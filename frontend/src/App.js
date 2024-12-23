@@ -1,10 +1,13 @@
-
-import './App.css';
+import React from 'react';
+import Login from './Login';
 
 function App() {
   return (
-    <h1> Hello World</h1>
+    <div className="App">
+      <Login />
+    </div>
   );
 }
 
 export default App;
+

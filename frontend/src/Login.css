@@ -1,0 +1,57 @@
+/* Ensure the login container and form fit nicely in the viewport */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box; /* Limit the width of the form */
+  margin-bottom: 1.0rem; /* Space between the login form and the buttons */
+  flex-grow: 1; /* Ensure the container takes available space without stretching */
+  padding: 2rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  width: 100%; /* Full width of the container */
+  max-width: 500px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.login-form h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.login-form input {
+  margin: 0.8rem 0;
+  padding: 0.9rem;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.login-form button {
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  background-color: #458f00;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+  background-color: #005a0f;
+}
+

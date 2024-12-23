@@ -1,0 +1,37 @@
+.auth-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem; /* Adds space between buttons */
+  padding-top: 0.5rem; /* Reduced padding from the login form */
+  width: 100%;
+}
+
+.signup-button,
+.get-started-button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signup-button {
+  background-color: #458f00;
+  color: #fff;
+}
+
+.signup-button:hover {
+  background-color: #005a0f;
+}
+
+.get-started-button {
+  background-color: #458f00;
+  color: #fff;
+}
+
+.get-started-button:hover {
+  background-color: #005a0f;
+}

@@ -1,6 +1,14 @@
+/* General Reset and Base Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
 /* Ensure the login container and form fit nicely in the viewport */
 .login-container {
   display: flex;
+  margin-top: 0%;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -10,6 +18,25 @@
   padding: 2rem;
 }
 
+/* Background Image Styling */
+.background-region {
+  margin-top: 80px; /* Adjust based on navbar height */
+  height: calc(100vh - 80px); /* Full height minus the navbar height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('./images/abstract-liquid-watercolor-background-with-golden-lines_525068-1440.avif');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: white;
+  padding: 0 2rem;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
 .login-form {
   display: flex;
   flex-direction: column;
@@ -17,15 +44,15 @@
   padding: 2rem;
   width: 100%; /* Full width of the container */
   max-width: 500px;
-  border: 1px solid #ddd;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: #077b4775;
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .login-form h2 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
+  color: black;
 }
 
 .login-form input {

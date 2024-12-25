@@ -1,0 +1,64 @@
+/* General Navbar Styles */
+.navbar {
+  background-color: #458f00; /* Matches the button palette */
+  width: 100%;
+  display: flex;
+  justify-content: flex-start; /* Aligns the logo and links to the left */
+  align-items: center;
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* Logo Style */
+.navbar .logo {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  margin-right: 2rem; /* Space between logo and links */
+}
+
+/* Navigation Links Styles */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #005a0f; /* Darker shade on hover */
+}
+
+/* Sign-in Link Styles */
+.sign-in-link {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.sign-in-link:hover {
+  color: #005a0f; /* Darker shade on hover */
+}
+
+/* Adjustments for page content (use this class on pages to avoid navbar overlap) */
+.page-content {
+  margin-top: 80px; /* Avoids overlap with fixed navbar */
+}

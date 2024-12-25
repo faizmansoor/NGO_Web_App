@@ -1,0 +1,96 @@
+/* General Page Styles */
+.signup-page {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5; /* Light background for contrast */
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ensures full screen height */
+  box-sizing: border-box;
+  background-image: url('./images/abstract-liquid-watercolor-background-with-golden-lines_525068-1440.avif'); /* Ensure correct path */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Sign-Up Form Container */
+.signup-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  background-color: #077b4775; /* White background for the container */
+  padding: 2rem;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for visual effect */
+  margin-top: 2rem; /* Ensure it's not at the top of the page */
+}
+
+/* Title Styles */
+.signup-title {
+  font-size: 2rem;
+  color: black;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+/* Form Styles */
+.signup-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Form Group Styles */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Label Styles */
+.form-group label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Input and Textarea Styles */
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: #458f00; /* Matches button hover color */
+}
+
+/* Submit Button Styles */
+.form-submit-button {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  background-color: #458f00;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-submit-button:hover {
+  background-color: #005a0f; /* Matches button hover color */
+}

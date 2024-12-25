@@ -1,0 +1,127 @@
+/* General Page Styles */
+.home-page {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5; /* Light background for contrast */
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+}
+
+/* Navbar Styles */
+.navbar {
+  background-color: #458f00; /* Matches button palette */
+  width: 100%;
+  display: flex;
+  justify-content: flex-start; /* Aligns the logo and links to the left */
+  align-items: center;
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.navbar .logo {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+  margin-right: 2rem; /* Space between logo and links */
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #005a0f; /* Darker shade on hover */
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #005a0f; /* Darker shade on hover */
+}
+
+/* Sign in option */
+.sign-in-link {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.sign-in-link:hover {
+  color: #005a0f; /* Darker shade on hover */
+}
+
+/* Search Bar Styles */
+.search-bar-container {
+  margin-top: 80px;
+  margin: 3rem auto 2rem; /* Reduced top margin to bring search bar higher */
+}
+
+.search-bar {
+  width: 50%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.search-bar:focus {
+  border-color: #005a0f; /* Matches hover color */
+}
+
+/* Containers for NGOs */
+.ngo-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 60%; /* Adjust width to make the containers smaller */
+  margin-top: 2rem;
+}
+
+.ngo-box {
+  flex: 1; /* Adjusts automatically to available space */
+  max-width: 20%; /* Reduced max-width for smaller containers */
+  margin: 0 1rem;
+  padding: 1.5rem;
+  background-color: #458f00; /* Matches button background */
+  color: white; /* Text color for contrast */
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  aspect-ratio: 1; /* Keeps the height equal to width */
+}
+
+.ngo-box:hover {
+  background-color: #005a0f; /* Matches hover color */
+}

@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   gap: 1rem; /* Adds space between buttons */
-  padding-top: 0.5rem; /* Reduced padding from the login form */
+  padding-top: 0%; /* Reduced padding from the login form */
   width: 100%;
 }
 

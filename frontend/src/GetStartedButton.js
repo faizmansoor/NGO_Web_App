@@ -1,15 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const GetStartedButton = () => {
+  const navigate = useNavigate();
+
   const handleGetStarted = () => {
-    window.location.href = '/get-started'; // Replace with your URL later
+    navigate('/'); // Navigate to the home page
   };
 
   return (
     <button className="get-started-button" onClick={handleGetStarted}>
-      Get Started
+      Browse
     </button>
   );
 };
 
 export default GetStartedButton;
+

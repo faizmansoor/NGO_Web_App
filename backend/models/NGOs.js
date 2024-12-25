@@ -14,6 +14,11 @@ const NGOSchema = new mongoose.Schema({
             message: 'Invalid URL format.',
         },
     },
+    ngoType: {
+        type: String,
+        enum: ['Health', 'Education', 'Environment', 'Community', 'Others'],
+        required: true,
+      },
     websiteLink: {
         type: String,
         required: true,

@@ -7,8 +7,6 @@ import jwt from 'jsonwebtoken';
 import { verifyAuthToken } from '../middleware/authMiddleware.js';
 const router = express.Router();
 
-
-
 router.post('/register', async (req, res) => {
   const { email, password, name } = req.body;
 
@@ -88,33 +86,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.post('/', verifyAuthToken, async (req, res) => {
-  // Only logged-in users can create NGOs
-  try {
-    const { name, email, address, contactNo, websiteLink, picUrl } = req.body;
-
-    if (!name || !email || !address || !contactNo || !websiteLink) {
-      return res.status(400).json({ message: 'Required fields are missing.' });
-    }
-
-    const newNgo = new NGO({
-      name,
-      email,
-      address,
-      contactNo,
-      websiteLink,
-      picUrl,
-      createdBy: req.user, // Assign the logged-in user's ID as the creator
-    });
-
-    await newNgo.save();
-    res.status(201).json({ message: 'NGO created successfully', newNgo });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Error creating NGO', error: err.message });
-  }
-});
-
 // Get all NGOs
 router.get('/', async (req, res) => {
   try {
@@ -126,70 +97,6 @@ router.get('/', async (req, res) => {
     res.status(500).json({ message: 'Error fetching NGOs', error: err.message });
   }
 });
-
-// Get a specific NGO
-router.get('/:id', async (req, res) => {
-  try {
-    const ngo = await NGO.findById(req.params.id);
-    if (!ngo) return res.status(404).json({ message: 'NGO not found' });
-    res.status(200).json(ngo);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Error retrieving NGO', error: err.message });
-  }
-});
-
-
-// Search NGOs by name (case-insensitive)
-// Search NGOs by name(do in frontend)
-// router.get('/search', async (req, res) => {
-//     try {
-//       const { name } = req.query;
-//       if (!name) {
-//         return res.status(400).json({ message: 'Name query parameter is required.' });
-//       }
-      
-//       // Perform case-insensitive search for NGOs that match the name
-//       const ngos = await NGO.find({
-//         name: { $regex: name, $options: 'i' }  // 'i' for case-insensitive
-//       });
-      
-//       if (ngos.length === 0) {
-//         return res.status(404).json({ message: `No NGOs found with name containing '${name}'` });
-//       }
-      
-//       res.status(200).json(ngos);
-//     } catch (err) {
-//       console.error('Error retrieving NGOs:', err.message);
-//       res.status(500).json({ message: 'Error retrieving NGO', error: err.message });
-//     }
-//   });
-  
-  
-router.get('/api/ngo/type/:type', async (req, res) => {
-    try {
-      const { type } = req.params;  // Get the type from the request parameter
-  
-      // Validate that the type is one of the allowed values
-      const validTypes = ['Health', 'Education', 'Environment', 'Community', 'Others'];
-      if (!validTypes.includes(type)) {
-        return res.status(400).json({ message: 'Invalid NGO type' });
-      }
-  
-      // Find NGOs that match the provided type
-      const ngos = await NGO.find({ ngoType: type });
-  
-      if (ngos.length === 0) {
-        return res.status(404).json({ message: `No NGOs found for type ${type}` });
-      }
-  
-      res.status(200).json(ngos);  // Send the filtered NGOs as a response
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: 'Error retrieving NGOs by type', error: err.message });
-    }
-  });
-  
 
 // Update an NGO
 router.put('/:id', verifyAuthToken,async (req, res) => {
@@ -236,3 +143,96 @@ router.delete('/:id', verifyAuthToken,async (req, res) => {
 });
 
 export default router;
+
+
+// router.post('/', verifyAuthToken, async (req, res) => {
+//   // Only logged-in users can create NGOs
+//   try {
+//     const { name, email, address, contactNo, websiteLink, picUrl } = req.body;
+
+//     if (!name || !email || !address || !contactNo || !websiteLink) {
+//       return res.status(400).json({ message: 'Required fields are missing.' });
+//     }
+
+//     const newNgo = new NGO({
+//       name,
+//       email,
+//       address,
+//       contactNo,
+//       websiteLink,
+//       picUrl,
+//       createdBy: req.user, // Assign the logged-in user's ID as the creator
+//     });
+
+//     await newNgo.save();
+//     res.status(201).json({ message: 'NGO created successfully', newNgo });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ message: 'Error creating NGO', error: err.message });
+//   }
+// });
+
+
+// Get a specific NGO
+// router.get('/:id', async (req, res) => {
+//   try {
+//     const ngo = await NGO.findById(req.params.id);
+//     if (!ngo) return res.status(404).json({ message: 'NGO not found' });
+//     res.status(200).json(ngo);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ message: 'Error retrieving NGO', error: err.message });
+//   }
+// });
+
+
+// Search NGOs by name (case-insensitive)
+// Search NGOs by name(do in frontend)
+// router.get('/search', async (req, res) => {
+//     try {
+//       const { name } = req.query;
+//       if (!name) {
+//         return res.status(400).json({ message: 'Name query parameter is required.' });
+//       }
+      
+//       // Perform case-insensitive search for NGOs that match the name
+//       const ngos = await NGO.find({
+//         name: { $regex: name, $options: 'i' }  // 'i' for case-insensitive
+//       });
+      
+//       if (ngos.length === 0) {
+//         return res.status(404).json({ message: `No NGOs found with name containing '${name}'` });
+//       }
+      
+//       res.status(200).json(ngos);
+//     } catch (err) {
+//       console.error('Error retrieving NGOs:', err.message);
+//       res.status(500).json({ message: 'Error retrieving NGO', error: err.message });
+//     }
+//   });
+  
+// router.get('/api/ngo/type/:type', async (req, res) => {
+//     try {
+//       const { type } = req.params;  // Get the type from the request parameter
+  
+//       // Validate that the type is one of the allowed values
+//       const validTypes = ['Health', 'Education', 'Environment', 'Community', 'Others'];
+//       if (!validTypes.includes(type)) {
+//         return res.status(400).json({ message: 'Invalid NGO type' });
+//       }
+  
+//       // Find NGOs that match the provided type
+//       const ngos = await NGO.find({ ngoType: type });
+  
+//       if (ngos.length === 0) {
+//         return res.status(404).json({ message: `No NGOs found for type ${type}` });
+//       }
+  
+//       res.status(200).json(ngos);  // Send the filtered NGOs as a response
+//     } catch (err) {
+//       console.error(err);
+//       res.status(500).json({ message: 'Error retrieving NGOs by type', error: err.message });
+//     }
+//   });
+  
+

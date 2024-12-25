@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import './SignupPage.css'; // Link to the specific CSS for SignupPage
-import Navbar from '../Navbar';
+import React, { useState } from "react";
+import "./authPages.css"; // Link to the specific CSS for SignupPage
+import Navbar from "../Navbar";
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    address: '',
-    contact_number: '',
-    fundraising_link: '',
-    website_link: '',
+    name: "",
+    email: "",
+    address: "",
+    contact_number: "",
+    fundraising_link: "",
+    website_link: "",
   });
 
   const handleChange = (e) => {
@@ -20,7 +20,7 @@ const SignupPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission (e.g., send the data to the server)
-    console.log('Form submitted:', formData);
+    console.log("Form submitted:", formData);
   };
 
   return (
@@ -28,9 +28,10 @@ const SignupPage = () => {
       <Navbar />
       <div className="background-region">
         <div className="signup-page">
-          <div className="signup-form-container"> {/* White container */}
+          <div className="signup-form-container">
+            {" "}
+            {/* White container */}
             <h1 className="signup-title">Sign Up</h1>
-            
             <form onSubmit={handleSubmit} className="signup-form">
               {/* Name Field */}
               <div className="form-group">
@@ -113,15 +114,13 @@ const SignupPage = () => {
 
               {/* Submit Button */}
               <div className="form-group">
-                <button
-                  type="submit"
-                  className="form-submit-button"
-                >
+                <button type="submit" className="form-submit-button">
                   Submit
                 </button>
               </div>
             </form>
-          </div> {/* End of white container */}
+          </div>{" "}
+          {/* End of white container */}
         </div>
       </div>
     </div>

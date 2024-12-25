@@ -11,11 +11,11 @@ const Login = () => {
       <div className="background-region">
         <div>
           <div className="login-container">
-            <form className="login-form">
+            <form className="signup-form ">
               <h2>NGO Login</h2>
               <input type="text" placeholder="Email" required />
               <input type="password" placeholder="Password" required />
-              <button type="submit">Login</button>
+              <button className="login-button signup-button" type="submit">Login</button>
             </form>
           </div>
 

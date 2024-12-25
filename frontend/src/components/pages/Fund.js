@@ -50,7 +50,7 @@ const Fund = () => {
     form.append("qrCodeImage", formData.qrCode);
 
     try {
-      const response = await axios.post("/api/fundraisers", form, {
+      const response = await axios.post("http://localhost:5000/api/fundraisers", form, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

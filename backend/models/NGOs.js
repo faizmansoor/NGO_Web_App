@@ -3,8 +3,9 @@ import mongoose from 'mongoose';
 const NGOSchema = new mongoose.Schema({
     name: { type: String, unique: true, required: true, maxlength: 100 },
     email: { type: String, unique: true, required: true, match: /.+\@.+\..+/ },
-    address: { type: String, required: true },
-    contactNo: { type: String, unique: true, required: true, minlength: 10, maxlength: 15 },
+    password: {type: String, required: true},
+    address: { type: String },
+    contactNo: { type: String, unique: true, minlength: 10, maxlength: 15 },
     fundraisingLink: {
         type: String,
         validate: {
@@ -17,11 +18,9 @@ const NGOSchema = new mongoose.Schema({
     ngoType: {
         type: String,
         enum: ['Health', 'Education', 'Environment', 'Community', 'Others'],
-        required: true,
-      },
+    },
     websiteLink: {
         type: String,
-        required: true,
         validate: {
             validator: function (value) {
                 return /^(https?:\/\/[^\s]+)$/.test(value);

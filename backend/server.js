@@ -6,44 +6,34 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import connectDb from './config/db.js'; 
 import bcrypt from 'bcryptjs';
-import NGO from "./models/NGOs.js";
-import Event from './models/Events.js';
 import ngoRoutes from './routes/ngoRoutes.js';
 import eventRoutes from './routes/eventRoutes.js';
-
+import cookieParser from 'cookie-parser';
+import jwt from 'jsonwebtoken';
 
 const app = express();
+
+//connect to mongodb
+connectDb();
 
 // Middlewares
 app.use(cors());
 app.use(morgan('dev'));  // Log HTTP requests
 app.use(express.json());  // Parse JSON request body
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json())
+app.use(cookieParser());
 
 
 // Routes
 app.use('/api/ngo', ngoRoutes);
 app.use('/api/event', eventRoutes);
 
-// Connect to MongoDB
-const startServer = async () => {
-  try {
-    await connectDb();
-    const PORT = process.env.PORT || 5000;
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
-    });
-  } catch (err) {
-    console.error('Error starting the server:', err);
-    process.exit(1); // Exit process if the connection fails
-  }
-};
-
-// Call the start server function
-startServer();
-
 // Sample route to test the server
 app.get('/', (req, res) => {
   res.send('Server is running...');
+});
+
+let port = process.env.PORT || 3000;
+app.listen(port, ()=>{
+  console.log(`Server is walking on port ${port}`)
 });

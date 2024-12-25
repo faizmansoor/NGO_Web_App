@@ -1,0 +1,132 @@
+/* General Page Styles */
+
+.signup-page {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('https://img.freepik.com/premium-photo/abstract-liquid-watercolor-background-with-golden-lines_525068-1440.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow-y: auto;
+    margin-top: 80px; /* Push content below navbar */
+    width :60%;
+    min-height: 100vh;
+}
+
+.signup-form-container {
+    width: 95%; /* Occupy most of the screen width */
+    max-width: 800px; /* Limit the maximum width */
+    background-color: #077b4775;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .signup-page {
+        margin-top: 60px; /* Adjust for smaller navbar height */
+    }
+
+    .signup-form-container {
+        width: 100%; /* Full-width on mobile */
+        padding: 1.5rem;
+    }
+}
+
+  /* Title Styles */
+  .signup-title {
+    font-size: 2rem;
+    color: black;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+  
+  /* Form Styles */
+  .signup-form {
+    width: 200%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+  }
+  
+  /* Form Group Styles */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Label Styles */
+  .form-group label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Input and Textarea Styles */
+  .form-input {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-input:focus {
+    border-color: #458f00; /* Matches button hover color */
+  }
+  
+  /* Submit Button Styles */
+  .form-submit-button {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    background-color: #458f00;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form-submit-button:hover {
+    background-color: #005a0f; /* Matches button hover color */
+  }
+  @media (max-width: 768px) {
+    .signup-page {
+      padding: 1rem; /* Adjust padding for mobile */
+      height: auto; /* Allow height to adjust based on content */
+      background-size: cover; /* Ensure the background scales properly */
+    }
+  
+    .signup-form-container {
+      padding: 1rem; /* Further reduce padding inside the form */
+      max-width: 100%; /* Make form container full width */
+      margin-top: 1rem; /* Adjust margin from top */
+    }
+  
+    .signup-title {
+      font-size: 1.6rem; /* Reduce title font size for smaller screens */
+      margin-bottom: 1rem; /* Adjust space below the title */
+    }
+  
+    .form-group {
+      margin-bottom: 1rem; /* Reduce space between form groups */
+    }
+  
+    .form-input {
+      padding: 0.8rem; /* Adjust input padding for touch screens */
+      font-size: 1rem; /* Keep font size for readability */
+    }
+  
+    .form-submit-button {
+      padding: 1rem; /* Adjust button padding for touch screens */
+      font-size: 1rem; /* Make the button font size more mobile-friendly */
+    }
+  }

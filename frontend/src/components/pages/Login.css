@@ -1,0 +1,155 @@
+/* General Reset and Base Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow-y: scroll;
+  }
+  
+  /* Ensure the login container and form fit nicely in the viewport */
+  .login-container {
+    display: flex;
+    margin-top: 0%;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box; /* Limit the width of the form */
+    margin-bottom: 1.0rem; /* Space between the login form and the buttons */
+    flex-grow: 1; /* Ensure the container takes available space without stretching */
+    padding: 2rem;
+  }
+  
+  /* Background Image Styling */
+  .background-region {
+    margin-top: 80px; /* Adjust based on navbar height */
+    height: calc(100vh - 80px); /* Full height minus the navbar height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    padding: 0 2rem;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    width: 100%; /* Full width of the container */
+    max-width: 500px;
+    border-radius: 10px;
+    background-color: #077b4775;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .login-form h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: black;
+  }
+  
+  .login-form input {
+    margin: 0.8rem 0;
+    padding: 0.9rem;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .login-form button {
+    margin-top: 1rem;
+    padding: 1rem 2rem;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    background-color: #458f00;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-form button:hover {
+    background-color: #005a0f;
+  }
+  /* For screens 1024px or smaller (tablets and landscape mobile) */
+@media (max-width: 1024px) {
+    .login-container {
+      padding: 1.5rem; /* Adjust padding for a more compact look */
+      margin-top: 0; /* Remove top margin */
+    }
+  
+    .background-region {
+      margin-top: 60px; /* Adjust for smaller screens, less space from navbar */
+      padding: 0 1rem; /* Reduce padding for smaller screens */
+      height: calc(100vh - 60px); /* Adjust background height */
+    }
+  
+    .login-form {
+      max-width: 90%; /* Allow more width on smaller devices */
+      padding: 1.5rem; /* Reduce padding */
+    }
+  
+    .login-form h2 {
+      font-size: 1.8rem; /* Slightly reduce heading size */
+      margin-bottom: 1.2rem; /* Reduce space below heading */
+    }
+  
+    .login-form input {
+      margin: 0.6rem 0; /* Reduce margin between inputs */
+      padding: 0.8rem; /* Adjust input padding */
+    }
+  
+    .login-form button {
+      padding: 0.9rem 1.8rem; /* Adjust button padding */
+      font-size: 1.1rem; /* Slightly reduce button font size */
+    }
+  }
+  
+  /* For screens 768px or smaller (mobile devices) */
+  @media (max-width: 768px) {
+    body {
+      overflow: auto; /* Allow scrolling on mobile screens */
+    }
+  
+    .login-container {
+      padding: 1rem; /* Reduce padding */
+    }
+  
+    .background-region {
+      margin-top: 50px; /* Adjust margin for smaller screens */
+      height: calc(100vh - 50px); /* Adjust background height */
+      padding: 0 1rem; /* Reduce padding */
+    }
+  
+    .login-form {
+      max-width: 100%; /* Allow full width on small screens */
+      padding: 1rem; /* Reduce padding */
+    }
+  
+    .login-form h2 {
+      font-size: 1.6rem; /* Further reduce heading size */
+      margin-bottom: 1rem; /* Reduce margin below heading */
+    }
+  
+    .login-form input {
+      margin: 0.5rem 0; /* Adjust margin between inputs */
+      padding: 0.7rem; /* Adjust input padding */
+      font-size: 1rem; /* Make input text slightly smaller */
+    }
+  
+    .login-form button {
+      padding: 1rem 1.5rem; /* Adjust button padding for touch devices */
+      font-size: 1rem; /* Make button font size more mobile-friendly */
+    }
+  }
+  

@@ -89,11 +89,11 @@ router.post('/login', async (req, res) => {
 // Create a new NGO
 // router.post('/', async (req, res) => {
 //   try {
-//     const { name, email, password, address, contactNo, fundraisingLink, websiteLink, picUrl } = req.body;
+//     const { name, email, password, address, contactNo, , websiteLink, picUrl } = req.body;
 //     if (!name || !email || !address || !contactNo || !websiteLink) {
 //       return res.status(400).json({ message: 'Required fields are missing.' });
 //     }
-//     const newNgo = new NGO({ name, email, address, contactNo, fundraisingLink, websiteLink, picUrl });
+//     const newNgo = new NGO({ name, email, address, contactNo, websiteLink, picUrl });
 //     await newNgo.save();
 //     res.status(201).json(newNgo);
 //   } catch (err) {

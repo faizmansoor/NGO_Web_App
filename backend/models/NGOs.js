@@ -6,15 +6,15 @@ const NGOSchema = new mongoose.Schema({
     password: {type: String, required: true},
     address: { type: String },
     contactNo: { type: String, unique: true, minlength: 10, maxlength: 15 },
-    fundraisingLink: {
-        type: String,
-        validate: {
-            validator: function (value) {
-                return /^(https?:\/\/[^\s]+)$/.test(value);
-            },
-            message: 'Invalid URL format.',
-        },
-    },
+    // fundraisingLink: {
+    //     type: String,
+    //     validate: {
+    //         validator: function (value) {
+    //             return /^(https?:\/\/[^\s]+)$/.test(value);
+    //         },
+    //         message: 'Invalid URL format.',
+    //     },
+    // },
     ngoType: {
         type: String,
         enum: ['Health', 'Education', 'Environment', 'Community', 'Others'],

@@ -7,6 +7,7 @@ import bodyParser from 'body-parser';
 import connectDb from './config/db.js'; 
 import ngoRoutes from './routes/ngoRoutes.js';
 import eventRoutes from './routes/eventRoutes.js';
+import fundraiserRoutes from './routes/FundraiserRoutes.js';
 import cookieParser from 'cookie-parser';
 
 const app = express();
@@ -25,6 +26,8 @@ app.use(cookieParser());
 // Routes
 app.use('/api/ngo', ngoRoutes);
 app.use('/api/event', eventRoutes);
+app.use('/api/fundraisers', fundraiserRoutes);
+
 
 // Sample route to test the server
 app.get('/', (req, res) => {

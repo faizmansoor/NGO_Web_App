@@ -5,11 +5,9 @@ import morgan from 'morgan';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import connectDb from './config/db.js'; 
-import bcrypt from 'bcryptjs';
 import ngoRoutes from './routes/ngoRoutes.js';
 import eventRoutes from './routes/eventRoutes.js';
 import cookieParser from 'cookie-parser';
-import jwt from 'jsonwebtoken';
 
 const app = express();
 

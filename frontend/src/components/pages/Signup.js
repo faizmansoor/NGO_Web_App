@@ -6,10 +6,12 @@ const SignupPage = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    address: "",
+    password: "",
     contact_number: "",
-    fundraising_link: "",
+    address: "",
+    ngo_type: "",
     website_link: "",
+    ngo_picture: null, // For file upload (image)
   });
 
   const handleChange = (e) => {
@@ -17,111 +19,133 @@ const SignupPage = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleFileChange = (e) => {
+    const { name, files } = e.target;
+    setFormData({ ...formData, [name]: files[0] });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission (e.g., send the data to the server)
     console.log("Form submitted:", formData);
+    // Handle form submission (e.g., send data to the server)
   };
 
   return (
     <div>
       <Navbar />
       <div className="background-region">
-        <div className="signup-page">
-          <div className="signup-form-container">
-            {" "}
-            {/* White container */}
-            <h1 className="signup-title">Sign Up</h1>
-            <form onSubmit={handleSubmit} className="signup-form">
-              {/* Name Field */}
-              <div className="form-group">
-                <label htmlFor="name">NGO Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="form-input"
-                />
-              </div>
+        <form onSubmit={handleSubmit} className="signup-form">
+          <h1 className="signup-title">Sign Up</h1>
 
-              {/* Email Field */}
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="form-input"
-                />
-              </div>
+          <div className="form-group">
+            <label htmlFor="name">NGO Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="form-input"
+            />
+          </div>
 
-              {/* Address Field */}
-              <div className="form-group">
-                <label htmlFor="address">Address</label>
-                <textarea
-                  id="address"
-                  name="address"
-                  value={formData.address}
-                  onChange={handleChange}
-                  className="form-input"
-                />
-              </div>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="form-input"
+            />
+          </div>
 
-              {/* Contact Number Field */}
-              <div className="form-group">
-                <label htmlFor="contact_number">Contact Number</label>
-                <input
-                  type="text"
-                  id="contact_number"
-                  name="contact_number"
-                  value={formData.contact_number}
-                  onChange={handleChange}
-                  className="form-input"
-                />
-              </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+              className="form-input"
+            />
+          </div>
 
-              {/* Fundraising Link Field */}
-              <div className="form-group">
-                <label htmlFor="fundraising_link">Fundraising Link</label>
-                <input
-                  type="url"
-                  id="fundraising_link"
-                  name="fundraising_link"
-                  value={formData.fundraising_link}
-                  onChange={handleChange}
-                  className="form-input"
-                />
-              </div>
+          <div className="form-group">
+            <label htmlFor="contact_number">Contact Number</label>
+            <input
+              type="text"
+              id="contact_number"
+              name="contact_number"
+              value={formData.contact_number}
+              onChange={handleChange}
+              className="form-input"
+            />
+          </div>
 
-              {/* Website Link Field */}
-              <div className="form-group">
-                <label htmlFor="website_link">Website Link</label>
-                <input
-                  type="url"
-                  id="website_link"
-                  name="website_link"
-                  value={formData.website_link}
-                  onChange={handleChange}
-                  className="form-input"
-                />
-              </div>
+          <div className="form-group">
+            <label htmlFor="address">Address</label>
+            <textarea
+              id="address"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              className="form-input"
+            />
+          </div>
 
-              {/* Submit Button */}
-              <div className="form-group">
-                <button type="submit" className="form-submit-button">
-                  Submit
-                </button>
-              </div>
-            </form>
-          </div>{" "}
-          {/* End of white container */}
-        </div>
+          <div className="form-group">
+            <label htmlFor="ngo_type">NGO Type</label>
+            <select
+              id="ngo_type"
+              name="ngo_type"
+              value={formData.ngo_type}
+              onChange={handleChange}
+              className="form-input"
+            >
+              <option value="">Select Type</option>
+              <option value="Health">Health</option>
+              <option value="Education">Education</option>
+              <option value="Environment">Environment</option>
+              <option value="Community">Community</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="website_link">Website Link</label>
+            <input
+              type="url"
+              id="website_link"
+              name="website_link"
+              value={formData.website_link}
+              onChange={handleChange}
+              className="form-input"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="ngo_picture">NGO Picture</label>
+            <input
+              type="file"
+              id="ngo_picture"
+              name="ngo_picture"
+              onChange={handleFileChange}
+              className="form-input"
+            />
+          </div>
+
+          <div className="form-group">
+            <button type="submit" className="form-submit-button">
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

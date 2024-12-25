@@ -6,7 +6,7 @@ const AboutUs = () => {
   return (
     <div className="home-container">
       <Navbar />
-      <video src='/videos/video-1.mp4' autoPlay loop muted />
+      <video src='/videos/videof.mp4' autoPlay loop muted playsInline />
       <div className="about-us-content">
         <h1>About Us</h1>
         <p>

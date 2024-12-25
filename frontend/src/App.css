@@ -9,9 +9,12 @@ body {
   height:100%;
 }
 
-.app {
-  min-height: 100vh;
-  background: url('https://img.freepik.com/premium-photo/abstract-liquid-watercolor-background-with-golden-lines_525068-1440.jpg') no-repeat center center fixed;
+.AddEvent, .Fund, .Login, .NgoDir, .SignupPage {
+  background-image: url('https://img.freepik.com/premium-photo/abstract-liquid-watercolor-background-with-golden-lines_525068-1440.jpg');
+  background-position: center;
   background-size: cover;
-  text-align: center;
+  background-repeat: no-repeat;
+  color: #fff;
+  font-size: 100px;
+  height:100vh;
 }

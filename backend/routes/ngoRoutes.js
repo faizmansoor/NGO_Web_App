@@ -4,8 +4,10 @@ import express from 'express';
 import NGO from '../models/NGOs.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-
+import { verifyAuthToken } from '../middleware/authMiddleware.js';
 const router = express.Router();
+
+
 
 router.post('/register', async (req, res) => {
   const { email, password, name } = req.body;
@@ -86,21 +88,32 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Create a new NGO
-// router.post('/', async (req, res) => {
-//   try {
-//     const { name, email, password, address, contactNo, , websiteLink, picUrl } = req.body;
-//     if (!name || !email || !address || !contactNo || !websiteLink) {
-//       return res.status(400).json({ message: 'Required fields are missing.' });
-//     }
-//     const newNgo = new NGO({ name, email, address, contactNo, websiteLink, picUrl });
-//     await newNgo.save();
-//     res.status(201).json(newNgo);
-//   } catch (err) {
-//     console.error(err);
-//     res.status(400).json({ message: 'Error creating NGO', error: err.message });
-//   }
-// });
+router.post('/', verifyAuthToken, async (req, res) => {
+  // Only logged-in users can create NGOs
+  try {
+    const { name, email, address, contactNo, websiteLink, picUrl } = req.body;
+
+    if (!name || !email || !address || !contactNo || !websiteLink) {
+      return res.status(400).json({ message: 'Required fields are missing.' });
+    }
+
+    const newNgo = new NGO({
+      name,
+      email,
+      address,
+      contactNo,
+      websiteLink,
+      picUrl,
+      createdBy: req.user, // Assign the logged-in user's ID as the creator
+    });
+
+    await newNgo.save();
+    res.status(201).json({ message: 'NGO created successfully', newNgo });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Error creating NGO', error: err.message });
+  }
+});
 
 // Get all NGOs
 router.get('/', async (req, res) => {
@@ -179,10 +192,20 @@ router.get('/api/ngo/type/:type', async (req, res) => {
   
 
 // Update an NGO
-router.put('/:id', async (req, res) => {
+router.put('/:id', verifyAuthToken,async (req, res) => {
   try {
+    const ngo = await NGO.findById(req.params.id);
+
+    if (!ngo) {
+      return res.status(404).json({ message: 'NGO not found' });
+    }
+
+    // Check if the logged-in user is the creator of the NGO
+    if (ngo.createdBy.toString() !== req.user) {
+      return res.status(403).json({ message: 'Unauthorized: You can only edit your own NGOs' });
+    }
+
     const updatedNgo = await NGO.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!updatedNgo) return res.status(404).json({ message: 'NGO not found' });
     res.status(200).json(updatedNgo);
   } catch (err) {
     console.error(err);
@@ -191,10 +214,20 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete an NGO
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', verifyAuthToken,async (req, res) => {
   try {
-    const deletedNgo = await NGO.findByIdAndDelete(req.params.id);
-    if (!deletedNgo) return res.status(404).json({ message: 'NGO not found' });
+    const ngo = await NGO.findById(req.params.id);
+
+    if (!ngo) {
+      return res.status(404).json({ message: 'NGO not found' });
+    }
+
+    // Check if the logged-in user is the creator of the NGO
+    if (ngo.createdBy.toString() !== req.user) {
+      return res.status(403).json({ message: 'Unauthorized: You can only delete your own NGOs' });
+    }
+
+    await ngo.remove();
     res.status(200).json({ message: 'NGO deleted successfully' });
   } catch (err) {
     console.error(err);

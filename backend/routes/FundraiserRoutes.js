@@ -1,12 +1,13 @@
 import express from 'express';
 import Fundraiser from '../models/Fundraiser.js';
+import { verifyAuthToken } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
 
 
 // Create a new fundraiser
-router.post('/', async (req, res) => {
+router.post('/', verifyAuthToken, async (req, res) => {
   try {
     const { ngoId, name, description, imageUrl, qrCodeImage } = req.body;
 
@@ -14,12 +15,17 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ message: 'Required fields are missing.' });
     }
 
+    // Ensure the logged-in NGO is the one creating the fundraiser
+    if (req.user !== ngoId) {
+      return res.status(403).json({ message: 'Unauthorized: You can only create fundraisers for your own NGO.' });
+    }
+
     const newFundraiser = new Fundraiser({ ngoId, name, description, imageUrl, qrCodeImage });
     await newFundraiser.save();
     res.status(201).json(newFundraiser);
   } catch (err) {
     console.error(err);
-    res.status(400).json({ message: 'Error creating Fundraiser', error: err.message });
+    res.status(400).json({ message: 'Error creating fundraiser', error: err.message });
   }
 });
 
@@ -58,10 +64,20 @@ router.get('/:id', async (req, res) => {
 });
 
 // Update a fundraiser
-router.put('/:id', async (req, res) => {
+router.put('/:id', verifyAuthToken, async (req, res) => {
   try {
+    const fundraiser = await Fundraiser.findById(req.params.id);
+
+    if (!fundraiser) {
+      return res.status(404).json({ message: 'Fundraiser not found' });
+    }
+
+    // Check if the logged-in NGO is the creator of the fundraiser
+    if (fundraiser.ngoId.toString() !== req.user.toString()) {
+      return res.status(403).json({ message: 'Unauthorized: You can only update your own fundraisers.' });
+    }
+
     const updatedFundraiser = await Fundraiser.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!updatedFundraiser) return res.status(404).json({ message: 'Fundraiser not found' });
     res.status(200).json(updatedFundraiser);
   } catch (err) {
     console.error(err);
@@ -70,10 +86,20 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete a fundraiser
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', verifyAuthToken, async (req, res) => {
   try {
-    const deletedFundraiser = await Fundraiser.findByIdAndDelete(req.params.id);
-    if (!deletedFundraiser) return res.status(404).json({ message: 'Fundraiser not found' });
+    const fundraiser = await Fundraiser.findById(req.params.id);
+
+    if (!fundraiser) {
+      return res.status(404).json({ message: 'Fundraiser not found' });
+    }
+
+    // Check if the logged-in NGO is the creator of the fundraiser
+    if (fundraiser.ngoId.toString() !== req.user.toString()) {
+      return res.status(403).json({ message: 'Unauthorized: You can only delete your own fundraisers.' });
+    }
+
+    await fundraiser.remove();
     res.status(200).json({ message: 'Fundraiser deleted successfully' });
   } catch (err) {
     console.error(err);

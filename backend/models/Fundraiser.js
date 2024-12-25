@@ -1,10 +1,10 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const FundraiserSchema = new mongoose.Schema(
   {
     ngoId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'NGO', // Link to the NGO collection
+      ref: "NGO", // Link to the NGO collection
       required: true,
     },
     name: {
@@ -27,4 +27,4 @@ const FundraiserSchema = new mongoose.Schema(
   { timestamps: true } // Automatically add createdAt and updatedAt fields
 );
 
-export default mongoose.model('Fundraiser', FundraiserSchema);
+export default mongoose.model("Fundraiser", FundraiserSchema);

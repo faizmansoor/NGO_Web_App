@@ -1,29 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./NgoDir.css";
 
-const ngos = [
-  { name: "Education NGO", contact: "1234567890", link: "https://educationngo.org", type: "Education", location: "Urban" },
-  { name: "Healthcare NGO", contact: "0987654321", link: "https://healthcarengo.org", type: "Healthcare", location: "Rural" },
-  { name: "Environment NGO", contact: "1112223334", link: "https://environmentngo.org", type: "Environment", location: "Urban" },
-];
-
 const NgoDir = () => {
+  const [ngos, setNgos] = useState([]);
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchNGOs = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/ngos"); // Replace with your backend endpoint
+        if (response.data.success) {
+          setNgos(response.data.data);
+        } else {
+          setError("Failed to load NGOs.");
+        }
+      } catch (err) {
+        setError("Error fetching NGOs: " + err.message);
+      }
+    };
+
+    fetchNGOs();
+  }, []);
 
   const filteredNgos = ngos.filter((ngo) => {
     return (
       ngo.name.toLowerCase().includes(search.toLowerCase()) &&
-      (typeFilter === "" || ngo.type === typeFilter) &&
-      (locationFilter === "" || ngo.location === locationFilter)
+      (typeFilter === "" || ngo.ngoType === typeFilter) &&
+      (locationFilter === "" ||
+        ngo.address?.toLowerCase().includes(locationFilter.toLowerCase()))
     );
   });
 
   return (
     <div className="ngodir-container">
       <div className="filter-container">
-      <span className="search-icon">🔍</span> 
+        <span className="search-icon">🔍</span>
         <input
           type="text"
           placeholder="Search by name..."
@@ -37,29 +52,41 @@ const NgoDir = () => {
           className="filter-select"
         >
           <option value="">All Types</option>
+          <option value="Health">Health</option>
           <option value="Education">Education</option>
-          <option value="Healthcare">Healthcare</option>
           <option value="Environment">Environment</option>
+          <option value="Community">Community</option>
+          <option value="Others">Others</option>
         </select>
-        <select
+        <input
+          type="text"
+          placeholder="Filter by location..."
           value={locationFilter}
           onChange={(e) => setLocationFilter(e.target.value)}
-          className="filter-select"
-        >
-          <option value="">All Locations</option>
-          <option value="Urban">Urban</option>
-          <option value="Rural">Rural</option>
-        </select>
+          className="filter-box"
+        />
       </div>
       <div className="cards-container">
+        {error && <p className="error-message">{error}</p>}
         {filteredNgos.length > 0 ? (
           filteredNgos.map((ngo, index) => (
             <div key={index} className="card">
+              <img
+                src={ngo.picUrl}
+                alt={`${ngo.name} Logo`}
+                className="ngo-image"
+              />
               <h2>{ngo.name}</h2>
-              <p>Contact: {ngo.contact}</p>
-              <p>Type: {ngo.type}</p>
-              <p>Location: {ngo.location}</p>
-              <a href={ngo.link} target="_blank" rel="noopener noreferrer">Visit Website</a>
+              <p>Contact: {ngo.contactNo}</p>
+              <p>Type: {ngo.ngoType}</p>
+              <p>Address: {ngo.address}</p>
+              <a
+                href={ngo.websiteLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Visit Website
+              </a>
             </div>
           ))
         ) : (
@@ -69,4 +96,5 @@ const NgoDir = () => {
     </div>
   );
 };
+
 export default NgoDir;

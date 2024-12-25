@@ -1,69 +1,95 @@
-import React, { useState } from 'react';
-import './Fund.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./Fund.css";
 
 const Fund = () => {
   const [formData, setFormData] = useState({
-    fundraiserLink: '',  
-    description: '',     
-    image: null,          
-    qrCode: null          
+    name: "",
+    description: "",
+    image: null,
+    qrCode: null,
   });
 
-  const [cards, setCards] = useState([]);  
-  const [showForm, setShowForm] = useState(false);  
-  const [query, setQuery] = useState('');  
+  const [fundraisers, setFundraisers] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+  const [query, setQuery] = useState("");
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchFundraisers = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/fundraisers");
+        if (response.data.success) {
+          setFundraisers(response.data.data);
+        } else {
+          setError("Failed to load fundraisers.");
+        }
+      } catch (err) {
+        setError("Error fetching fundraisers: " + err.message);
+      }
+    };
+
+    fetchFundraisers();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    if (name === 'image' || name === 'qrCode') {
+    if (name === "image" || name === "qrCode") {
       setFormData({ ...formData, [name]: files[0] });
     } else {
       setFormData({ ...formData, [name]: value });
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const form = new FormData();
+    form.append("name", formData.name);
+    form.append("description", formData.description);
+    form.append("image", formData.image);
+    form.append("qrCodeImage", formData.qrCode);
 
-    setCards([...cards, formData]);
+    try {
+      const response = await axios.post("/api/fundraisers", form, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
-    setFormData({
-      fundraiserLink: '',
-      description: '',
-      image: null,
-      qrCode: null
-    });
-
-    setShowForm(false);
+      if (response.data.success) {
+        setFundraisers([...fundraisers, response.data.data]);
+        setShowForm(false);
+        setFormData({ name: "", description: "", image: null, qrCode: null });
+      }
+    } catch (err) {
+      setError("Error submitting fundraiser: " + err.message);
+    }
   };
 
-  const handleSearch = (e) => {
-    setQuery(e.target.value);
-  };
-
-  const filteredCards = cards.filter(card =>
-    card.fundraiserLink.toLowerCase().includes(query.toLowerCase()) ||
-    card.description.toLowerCase().includes(query.toLowerCase())
+  const filteredFundraisers = fundraisers.filter(
+    (fundraiser) =>
+      fundraiser.name.toLowerCase().includes(query.toLowerCase()) ||
+      fundraiser.description.toLowerCase().includes(query.toLowerCase())
   );
 
   return (
-    <div className="form-container">
+    <div className="fund-container">
       <button onClick={() => setShowForm(!showForm)}>
-        {showForm ? 'Close Form' : 'Create a Fundraiser'}
+        {showForm ? "Close Form" : "Create a Fundraiser"}
       </button>
 
       {showForm && (
         <form onSubmit={handleSubmit}>
           <h2>Fundraiser Registration</h2>
 
-          <label htmlFor="fundraiserLink">Fundraiser Link</label>
+          <label htmlFor="name">Fundraiser Name</label>
           <input
-            type="url"
-            id="fundraiserLink"
-            name="fundraiserLink"
-            value={formData.fundraiserLink}
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
             onChange={handleChange}
-            placeholder="Enter fundraiser link"
+            placeholder="Enter fundraiser name"
             required
           />
 
@@ -101,32 +127,26 @@ const Fund = () => {
         </form>
       )}
 
-      {/* Search Bar */}
       <div className="search-container">
         <input
           type="text"
           placeholder="Search fundraisers..."
           value={query}
-          onChange={handleSearch}
+          onChange={(e) => setQuery(e.target.value)}
         />
       </div>
 
-      {/* Render all filtered cards */}
       <div className="card-container">
-        {filteredCards.map((card, index) => (
+        {error && <p className="error-message">{error}</p>}
+        {filteredFundraisers.map((fundraiser, index) => (
           <div className="card" key={index}>
-            <p>
-              <strong>Fundraiser Link:</strong>{' '}
-              <a href={card.fundraiserLink} target="_blank" rel="noopener noreferrer">
-                {card.fundraiserLink}
-              </a>
-            </p>
-            <p><strong>Description:</strong> {card.description}</p>
-            {card.image && (
-              <img src={URL.createObjectURL(card.image)} alt="Fundraiser" />
+            <h3>{fundraiser.name}</h3>
+            <p>{fundraiser.description}</p>
+            {fundraiser.image && (
+              <img src={`/${fundraiser.image}`} alt="Fundraiser" />
             )}
-            {card.qrCode && (
-              <img src={URL.createObjectURL(card.qrCode)} alt="Fundraiser QR Code" />
+            {fundraiser.qrCodeImage && (
+              <img src={`/${fundraiser.qrCodeImage}`} alt="QR Code" />
             )}
           </div>
         ))}

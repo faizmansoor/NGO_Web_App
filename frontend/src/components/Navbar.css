@@ -5,7 +5,7 @@
     align-items: center;
     background: rgb(0, 0, 0);
     padding: 3px;
-    border-radius: 8px;
+    border-radius: 0;
     margin-bottom: 20px;
     position: sticky;
     top: 0;

@@ -12,10 +12,10 @@ const Navbar = () => {
       </div>
       <ul className="navbar-links">
         <li>
-          <Link to="/fund">Create a Fundraiser</Link>
+          <Link to="/fund">Fundraisers</Link>
         </li>
         <li>
-          <Link to="/addevent">Create an Event</Link>
+          <Link to="/addevent">NGO Events</Link>
         </li>
         <li><Link to="/NgoDir">NGO Directory</Link></li>
         <li><Link to="/login" className="nav-link">Sign In</Link></li> {/* Link to Login page */}

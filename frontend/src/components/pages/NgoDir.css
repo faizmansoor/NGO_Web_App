@@ -13,21 +13,22 @@ body{
     margin: 20px auto;
   }
  
-  .search-box {
-    width: 30%;
+  .search-box,
+  .filter-select {
     padding: 10px;
     font-size: 16px;
     border: 2px solid #ccc;
     border-radius: 8px;
     margin-top: 50px;
+    height: 40px; /* Set a specific height for both elements */
+  }
+  
+  .search-box {
+    width: 30%;
   }
   
   .filter-select {
-    width:10%;
-    font-size: 16px;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    margin-top:50px
+    width: 10%;
   }
   
   .cards-container {
@@ -47,7 +48,11 @@ body{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s, box-shadow 0.2s;
     width: 300px;
-    text-align: center;}
+    text-align: center;
+    font-family: 'Roboto', Arial, sans-serif; /* Modern font for the card */
+    font-size: 16px; /* Consistent font size */
+    font-weight: 545; /* Medium weight for body text */
+    line-height: 1.5;}
   
   .card:hover {
     transform: translateY(-10px);
@@ -56,12 +61,24 @@ body{
   
   .card h2 {
     margin-top: 0;
-    color: #333; /* Dark text for better readability */
+    color: #000000; 
+    font-size: 1.5rem; /* Adjust the size for better readability */
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   }
+  .card p {
+    margin: 8px 0; /* Add spacing between paragraphs */
+    font-size: 0.9rem; /* Slightly smaller size for details */
+    font-weight: 400; /* Regular weight for paragraphs */
+    color: 0000; 
+}
   
   .card a {
     color: #007bff; /* Standard blue for links */
     text-decoration: none;
+    
   }
   
   

@@ -1,8 +1,11 @@
 /* App.css */
 body {
+  
   margin: 0;
   font-family: 'Arial', sans-serif;
-  background: #f5f5f5; /* Fallback color */
+  background-image: url('https://img.freepik.com/premium-photo/abstract-liquid-watercolor-background-with-golden-lines_525068-1440.jpg');
+  background-position: center;
+  background-size: cover;
   min-height: 100vh;
   color: #000000;
   overflow-y: scroll;

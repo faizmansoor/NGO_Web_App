@@ -1,23 +1,106 @@
+//cookie is called authToken contains tokenized NGO id
+//didn't handle success. 
 import express from 'express';
 import NGO from '../models/NGOs.js';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 
-// Create a new NGO
-router.post('/', async (req, res) => {
+router.post('/register', async (req, res) => {
+  const { email, password, name } = req.body;
+
   try {
-    const { name, email, address, contactNo, fundraisingLink, websiteLink, picUrl } = req.body;
-    if (!name || !email || !address || !contactNo || !websiteLink) {
-      return res.status(400).json({ message: 'Required fields are missing.' });
+    // Check if the user already exists
+    let user = await NGO.findOne({ email });
+    if (user) {
+      return res.status(400).json({ message: 'User already exists' });
     }
-    const newNgo = new NGO({ name, email, address, contactNo, fundraisingLink, websiteLink, picUrl });
-    await newNgo.save();
-    res.status(201).json(newNgo);
-  } catch (err) {
-    console.error(err);
-    res.status(400).json({ message: 'Error creating NGO', error: err.message });
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);  
+
+    user = new NGO({
+      name,
+      email,
+      password: hashedPassword, 
+    });
+
+    await user.save();
+
+    // Create a payload for the JWT
+    const payload = { userId: user._id };
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '7d' });
+
+    // Send the response with the token
+    res.cookie('authToken', token, {
+      httpOnly: true,
+      //secure: true, //use this in production
+      maxAge: 7*24*60*60*1000
+    });
+
+    // Send the user data or anything else you want here
+    res.json({ message: 'User registered successfully', user: { name: user.name, email: user.email } }); 
+
+  } 
+  catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server error');
   }
 });
+
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  
+  try {
+    // Find user
+    let user = await NGO.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
+
+    // Create a payload for the JWT
+    const payload = { userId: user._id };
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '7d' });
+
+    // Set the JWT as a cookie
+    res.cookie('authToken', token, {
+      httpOnly: true,
+      //secure: true, //use this in production
+      maxAge: 7 * 24 * 60 * 60 * 1000
+    });
+
+    // Send response with user data (optional)
+    res.json({
+      message: 'Login successful',  
+      user: { name: user.name, email: user.email }, 
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error (logged)');
+  }
+});
+
+// Create a new NGO
+// router.post('/', async (req, res) => {
+//   try {
+//     const { name, email, password, address, contactNo, fundraisingLink, websiteLink, picUrl } = req.body;
+//     if (!name || !email || !address || !contactNo || !websiteLink) {
+//       return res.status(400).json({ message: 'Required fields are missing.' });
+//     }
+//     const newNgo = new NGO({ name, email, address, contactNo, fundraisingLink, websiteLink, picUrl });
+//     await newNgo.save();
+//     res.status(201).json(newNgo);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(400).json({ message: 'Error creating NGO', error: err.message });
+//   }
+// });
 
 // Get all NGOs
 router.get('/', async (req, res) => {

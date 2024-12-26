@@ -2,6 +2,7 @@ import express from "express";
 import Fundraiser from "../models/Fundraiser.js";
 import { verifyAuthToken } from "../middleware/authMiddleware.js";
 import { verifyToken } from '../components/cookie.js';
+import { verifyToken } from '../components/cookie.js';
 import multer from "multer";
 const router = express.Router();
 import path from "path"; 

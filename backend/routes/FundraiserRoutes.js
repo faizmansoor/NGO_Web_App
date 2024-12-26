@@ -19,37 +19,43 @@ const upload = multer({ storage });
 // Create a new fundraiser
 // src/routes/fundraiserRoutes.js
 
-router.post("/", upload.fields([{ name: 'image', maxCount: 1 }, { name: 'qrCodeImage', maxCount: 1 }]), verifyToken, async (req, res) => {
+router.post("/", verifyToken, async (req, res) => {
   try {
     console.log("Request Body:", req.body);
-    console.log("Uploaded Files:", req.files);
-    const { name, description } = req.body;
+    const { name, description, imageUrl, qrCodeUrl } = req.body;
 
-    const imageUrl = req.files.image ? req.files.image[0].path : null;
-    const qrCodeImage = req.files.qrCodeImage ? req.files.qrCodeImage[0].path : null;
-
-    if (!name || !description) {
-      return res.status(400).json({ message: "Required fields are missing." });
+    if (!name || !description || !imageUrl || !qrCodeUrl) {
+      return res.status(400).json({ 
+        success: false,
+        message: "Required fields are missing. Please provide name, description, imageUrl, and qrCodeUrl." 
+      });
     }
 
-    // Extract ngoId from the decoded token (make sure to adjust this)
-    const ngoId = req.user?.userId;  // This assumes  is part of the decoded JWT
+    // Extract ngoId from the decoded token
+    const ngoId = req.user?.userId;
 
     // Create new fundraiser entry
     const newFundraiser = new Fundraiser({
-      ngoId,  // Attach ngoId to the fundraiser
+      ngoId,
       name,
       description,
-      image: imageUrl,
-      qrCodeImage,
+      imageUrl, // Changed from image to imageUrl
+      qrCodeUrl, // Changed from qrCodeImage to qrCodeUrl
     });
 
     await newFundraiser.save();
-
-    res.status(201).json({ success: true, data: newFundraiser });
+    
+    res.status(201).json({ 
+      success: true, 
+      data: newFundraiser 
+    });
   } catch (err) {
     console.error(err);
-    res.status(400).json({ message: "Error creating fundraiser", error: err.message });
+    res.status(400).json({ 
+      success: false,
+      message: "Error creating fundraiser", 
+      error: err.message 
+    });
   }
 });
 

@@ -10,10 +10,7 @@ import multer from "multer";
 
 const upload = multer({ dest: "uploads/" });
 
-
-
-
-router.post("/register",upload.single("ngo_picture"), async (req, res) => {
+router.post("/register", async (req, res) => {
   const {
     name,
     email,
@@ -22,9 +19,8 @@ router.post("/register",upload.single("ngo_picture"), async (req, res) => {
     address,
     ngo_type,
     website_link,
+    ngo_picture, // This will now be a URL from FreeImage
   } = req.body;
-  const ngo_picture = req.file;
-  console.log("Received Data:", req.body);  
 
   try {
     // Check if the NGO already exists
@@ -40,12 +36,11 @@ router.post("/register",upload.single("ngo_picture"), async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      contactNo: contact_number, 
+      contactNo: contact_number,
       address,
       ngo_type,
       website_link,
-      ngo_picture: ngo_picture ? `/uploads/${ngo_picture.filename}` : undefined,
-
+      ngo_picture, // Save the URL directly
     });
 
     await ngo.save();
@@ -72,7 +67,6 @@ router.post("/register",upload.single("ngo_picture"), async (req, res) => {
     res.status(500).send("Server error");
   }
 });
-
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -120,13 +114,11 @@ router.get("/", async (req, res) => {
     const sanitizedNgos = ngos.map(({ email, password, ...ngo }) => ngo);
     res.status(200).json({ success: true, data: sanitizedNgos });
   } catch (err) {
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: "Error retrieving NGOs",
-        error: err.message,
-      });
+    res.status(500).json({
+      success: false,
+      message: "Error retrieving NGOs",
+      error: err.message,
+    });
   }
 });
 

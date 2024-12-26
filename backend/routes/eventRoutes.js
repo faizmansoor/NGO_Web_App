@@ -69,6 +69,27 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Assuming this is in your eventRoutes.js file
+router.get("/user", verifyToken, async (req, res) => {
+  try {
+    // Get the logged-in user's ngoId from the token
+    const loggedInUserId = req.user.userId;
+
+    // Fetch events belonging to this ngoId
+    const events = await Event.find({ ngoId: loggedInUserId });
+
+    if (events.length === 0) {
+      return res.status(404).json({ message: "No events found" });
+    }
+
+    res.status(200).json(events);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Error fetching events", error: err.message });
+  }
+});
+
+
 // Get events by NGO
 router.get("/ngo/:ngoId", async (req, res) => {
   try {
@@ -113,29 +134,30 @@ router.put("/:id", verifyAuthToken, async (req, res) => {
 });
 
 // Delete an event
-router.delete("/:id", verifyAuthToken, async (req, res) => {
+router.delete("/:id", verifyToken, async (req, res) => {
   try {
+    // Get the event by ID
     const event = await Event.findById(req.params.id);
+    console.log(event)
 
     if (!event) {
       return res.status(404).json({ message: "Event not found" });
     }
 
     // Check if the logged-in NGO is the creator of the event
-    if (event.ngoId.toString() !== req.user.toString()) {
-      return res.status(403).json({
-        message: "Unauthorized: You can only delete your own events.",
-      });
+    console.log("Logged-in user:", req.user);
+    if (event.ngoId.toString() !== req.user.userId.toString()) {
+      return res.status(403).json({ message: "You are not authorized to delete this event" });
     }
 
-    await event.remove();
+    // Delete the event
+    await event.deleteOne();
     res.status(200).json({ message: "Event deleted successfully" });
   } catch (err) {
     console.error(err);
-    res
-      .status(500)
-      .json({ message: "Error deleting event", error: err.message });
+    res.status(500).json({ message: "Error deleting event", error: err.message });
   }
 });
+
 
 export default router;

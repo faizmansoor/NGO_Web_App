@@ -20,6 +20,7 @@ const EventList = () => {
   const [locationFilter, setLocationFilter] = useState("");
   const [error, setError] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userId, setUserId] = useState("");
 
   // Fetch events and authentication status
   useEffect(() => {
@@ -29,6 +30,7 @@ const EventList = () => {
           withCredentials: true, // Ensure cookies are sent with the request
         });
         setIsAuthenticated(response.data.isAuthenticated);
+        setUserId(response.data.userId);
       } catch (err) {
         setIsAuthenticated(false);
       }
@@ -51,6 +53,7 @@ const EventList = () => {
 
     fetchEvents();
   }, []);
+  
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -95,6 +98,23 @@ const EventList = () => {
       }
     } catch (err) {
       setError("Error submitting event: " + err.message);
+    }
+  };
+  const handleDelete = async (eventId) => {
+    try {
+      const response = await axios.delete(`http://localhost:5000/api/events/${eventId}`, {
+        withCredentials: true, // Ensure cookies are sent with the request
+      });
+  
+      // Check for the success message in the response
+      if (response.data.message === "Event deleted successfully") {
+        setEvents(events.filter((event) => event._id !== eventId)); // Remove the event from the list
+        console.log("Event deleted successfully.");
+      } else {
+        setError("Failed to delete event.");
+      }
+    } catch (err) {
+      setError("Error deleting event: " + err.message);
     }
   };
   
@@ -220,6 +240,36 @@ const EventList = () => {
                       Register here
                     </a>
                   </p>
+                )}
+              {event.ngoId === userId && (
+                  <button
+                  style={{
+                    all: "unset", // Reset all styles
+                    position: "fixed",
+                    bottom: "20px",
+                    right: "20px",
+                    width: "30px",  // Smaller size
+                    height: "30px", // Same width and height for a perfect circle
+                    borderRadius: "50%",
+                    backgroundColor: "darkgreen",
+                    color: "white",
+                    fontSize: "18px", // Smaller "X"
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    cursor: "pointer",
+                    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                  }}
+                  onMouseEnter={(e) => e.target.style.backgroundColor = "darkgreen"}
+                  onMouseLeave={(e) => e.target.style.backgroundColor = "darkgreen"}
+                  onClick={() => handleDelete(event._id)}
+                >
+                  ✖
+                </button>
+                
+                
+                
+                
                 )}
               </div>
             ))

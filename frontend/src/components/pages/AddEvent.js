@@ -53,7 +53,6 @@ const EventList = () => {
 
     fetchEvents();
   }, []);
-  
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -105,19 +104,19 @@ const EventList = () => {
       const response = await axios.delete(`http://localhost:5000/api/events/${eventId}`, {
         withCredentials: true, // Ensure cookies are sent with the request
       });
-  
-      // Check for the success message in the response
-      if (response.data.message === "Event deleted successfully") {
+
+      if (response.data.success) {
         setEvents(events.filter((event) => event._id !== eventId)); // Remove the event from the list
         console.log("Event deleted successfully.");
+        window.location.href = "http://localhost:3000/addevent";
       } else {
-        setError("Failed to delete event.");
+        console.log("deleting");
+        window.location.href = "http://localhost:3000/addevent";
       }
     } catch (err) {
-      setError("Error deleting event: " + err.message);
+      console.log("No access")
     }
   };
-  
 
   const filteredEvents = events.filter((event) => {
     return (
@@ -242,35 +241,35 @@ const EventList = () => {
                   </p>
                 )}
               {event.ngoId === userId && (
-                  <button
-                  style={{
-                    all: "unset", // Reset all styles
-                    position: "fixed",
-                    bottom: "20px",
-                    right: "20px",
-                    width: "30px",  // Smaller size
-                    height: "30px", // Same width and height for a perfect circle
-                    borderRadius: "50%",
-                    backgroundColor: "darkgreen",
-                    color: "white",
-                    fontSize: "18px", // Smaller "X"
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    cursor: "pointer",
-                    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                  }}
-                  onMouseEnter={(e) => e.target.style.backgroundColor = "darkgreen"}
-                  onMouseLeave={(e) => e.target.style.backgroundColor = "darkgreen"}
-                  onClick={() => handleDelete(event._id)}
-                >
-                  ✖
-                </button>
+  <button
+    style={{
+      all: "unset", // Reset all styles
+      position: "absolute",  // Absolute position within the card container
+      top: "10px", // Adjust top position within the card
+      right: "10px", // Adjust right position within the card
+      width: "30px",  // Smaller size
+      height: "30px", // Same width and height for a perfect circle
+      borderRadius: "50%",
+      backgroundColor: "darkgreen",
+      color: "white",
+      fontSize: "18px", // Smaller "X"
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      cursor: "pointer",
+      boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+    }}
+    onMouseEnter={(e) => e.target.style.backgroundColor = "darkgreen"}
+    onMouseLeave={(e) => e.target.style.backgroundColor = "darkgreen"}
+    onClick={() => handleDelete(event._id)}
+  >
+    X
+  </button>
+)}
                 
                 
                 
                 
-                )}
               </div>
             ))
           ) : (

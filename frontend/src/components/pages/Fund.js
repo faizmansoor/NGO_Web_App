@@ -14,11 +14,29 @@ const Fund = () => {
   const [showForm, setShowForm] = useState(false);
   const [query, setQuery] = useState("");
   const [error, setError] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
+    const checkAuthStatus = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/check-auth", {
+          withCredentials: true, // Ensure credentials (cookies) are sent with the request
+        });
+
+        if (response.data.isAuthenticated) {
+          setIsAuthenticated(true);
+        }
+      } catch (err) {
+        setIsAuthenticated(false);
+      }
+    };
+
+    checkAuthStatus();
+
     const fetchFundraisers = async () => {
       try {
         const response = await axios.get("http://localhost:5000/api/fundraisers");
+
         if (response.data.success) {
           setFundraisers(response.data.data);
         } else {
@@ -50,11 +68,17 @@ const Fund = () => {
     form.append("qrCodeImage", formData.qrCode);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/fundraisers", form, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      // Send the form data to the backend along with the authentication token
+      const response = await axios.post(
+        "http://localhost:5000/api/fundraisers",
+        form,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true, // Ensure the cookie is sent with the request
+        }
+      );
 
       if (response.data.success) {
         setFundraisers([...fundraisers, response.data.data]);
@@ -62,7 +86,7 @@ const Fund = () => {
         setFormData({ name: "", description: "", image: null, qrCode: null });
       }
     } catch (err) {
-      setError("Error submitting fundraiser: " + err.message);
+      console.log(err);
     }
   };
 
@@ -74,9 +98,11 @@ const Fund = () => {
 
   return (
     <div className="fund-container">
-      <button onClick={() => setShowForm(!showForm)}>
-        {showForm ? "Close Form" : "Create a Fundraiser"}
-      </button>
+      {isAuthenticated && (
+        <button onClick={() => setShowForm(!showForm)}>
+          {showForm ? "Close Form" : "Create a Fundraiser"}
+        </button>
+      )}
 
       {showForm && (
         <form onSubmit={handleSubmit}>

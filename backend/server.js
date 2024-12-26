@@ -10,6 +10,7 @@ import eventRoutes from "./routes/eventRoutes.js";
 import fundraiserRoutes from "./routes/FundraiserRoutes.js";
 import cookieParser from "cookie-parser";
 import multer from "multer";
+import jwt from 'jsonwebtoken';
 
 
 const app = express();
@@ -36,6 +37,24 @@ app.use("/api/fundraisers", fundraiserRoutes);
 // Sample route to test the server
 app.get("/", (req, res) => {
   res.send("Server is running...");
+});
+
+app.get('/check-auth', (req, res) => {
+  console.log(req.cookies); // Check if cookies are being parsed
+
+  const token = req.cookies.authToken;  // The cookie is automatically parsed by cookie-parser middleware
+
+  if (!token) {
+    return res.status(401).json({ isAuthenticated: false });
+  }
+
+  jwt.verify(token,process.env.JWT_SECRET, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ isAuthenticated: false });
+    }
+
+    res.json({ isAuthenticated: true });
+  });
 });
 
 let port = process.env.PORT || 5000;

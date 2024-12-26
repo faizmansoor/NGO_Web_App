@@ -10,47 +10,35 @@ const EventList = () => {
     location: "",
     description: "",
     volunteerLink: "",
-    image: null,
+    
   });
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    if (name === "image") {
-      setFormData({ ...formData, image: files[0] });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    setCards([...cards, formData]);
-
-    setFormData({
-      event: "",
-      participants: "",
-      eligibility: "",
-      location: "",
-      description: "",
-      volunteerLink: "",
-      image: null,
-    });
-
-    setShowForm(false);
-  };
   const [cards, setCards] = useState([]);
   const [showForm, setShowForm] = useState(false);
-
   const [events, setEvents] = useState([]);
   const [search, setSearch] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
   const [error, setError] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  // Fetch events and authentication status
   useEffect(() => {
+    const checkAuthStatus = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/check-auth", {
+          withCredentials: true, // Ensure cookies are sent with the request
+        });
+        setIsAuthenticated(response.data.isAuthenticated);
+      } catch (err) {
+        setIsAuthenticated(false);
+      }
+    };
+
+    checkAuthStatus();
+
     const fetchEvents = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/events"); // Replace with your backend endpoint
+        const response = await axios.get("http://localhost:5000/api/events");
         if (response.data.success) {
           setEvents(response.data.data);
         } else {
@@ -64,6 +52,53 @@ const EventList = () => {
     fetchEvents();
   }, []);
 
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    if (name === "image") {
+      setFormData({ ...formData, image: files[0] });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    const dataToSend = { ...formData };
+  
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/events",
+        dataToSend,
+        {
+          headers: {
+            "Content-Type": "application/json", // Use application/json
+          },
+          withCredentials: true,
+        }
+      );
+  
+      if (response.data.success) {
+        setCards([...cards, formData]);
+        setFormData({
+          event: "",
+          location: "",
+          description: "",
+          participants: "",
+          eligibility: "",
+          volunteerLink: "",
+        });
+        setShowForm(false);
+        console.log("Event created successfully.");
+      } else {
+        setError("Failed to create event.");
+      }
+    } catch (err) {
+      setError("Error submitting event: " + err.message);
+    }
+  };
+  
+
   const filteredEvents = events.filter((event) => {
     return (
       event.name.toLowerCase().includes(search.toLowerCase()) &&
@@ -74,9 +109,12 @@ const EventList = () => {
 
   return (
     <div className="form-container">
-      <button onClick={() => setShowForm(!showForm)}>
-        {showForm ? "Close Form" : "Create New Event"}
-      </button>
+      {isAuthenticated && (
+        <button onClick={() => setShowForm(!showForm)}>
+          {showForm ? "Close Form" : "Create New Event"}
+        </button>
+      )}
+
       {showForm && (
         <form onSubmit={handleSubmit}>
           <h2>Event Registration</h2>
@@ -139,18 +177,11 @@ const EventList = () => {
             placeholder="Enter volunteer registration link"
             required
           />
-          <label htmlFor="image">Upload Event Image</label>
-          <input
-            type="file"
-            id="image"
-            name="image"
-            accept="image/*"
-            onChange={handleChange}
-            required
-          />
+          
           <button type="submit">Submit</button>
         </form>
       )}
+
       <div className="eventlist-container">
         <div className="filter-container">
           <span className="search-icon">🔍</span>
@@ -169,25 +200,27 @@ const EventList = () => {
             className="filter-box"
           />
         </div>
+
         <div className="cards-container">
           {error && <p className="error-message">{error}</p>}
           {filteredEvents.length > 0 ? (
             filteredEvents.map((event, index) => (
               <div key={index} className="card">
                 <h2>{event.name}</h2>
-                <p>
-                  <strong>Date:</strong>{" "}
-                  {new Date(event.date).toLocaleDateString()}
-                </p>
-                <p>
-                  <strong>Location:</strong> {event.location}
-                </p>
-                <p>
-                  <strong>Description:</strong> {event.description}
-                </p>
-                <p>
-                  <strong>Organized by:</strong> {event.ngoName}
-                </p>
+                <p><strong>Organized by:</strong> {event.ngoName}</p>
+                <p>{event.location}</p>
+                <p>{event.description}</p>
+                {event.volunteerLink && (
+                  <p style={{ fontWeight: "bold" }}>
+                    <a
+                      href={event.volunteerLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Register here
+                    </a>
+                  </p>
+                )}
               </div>
             ))
           ) : (

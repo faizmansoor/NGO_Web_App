@@ -3,7 +3,7 @@ body {
   
   margin: 0;
   font-family: 'Arial', sans-serif;
-  background-image: url('https://img.freepik.com/premium-photo/abstract-liquid-watercolor-background-with-golden-lines_525068-1440.jpg');
+  background-image: url('https://lh3.googleusercontent.com/proxy/356YR2pDHwmDjumzXz69wMO6AqHAQOCsP4d2MThcSeq1NwEEsU58FbQps0GEmblGEoc2EN5Y6nR24103gBhO8LTPbcD494sW1so3mpe0hkXiCvPU_S7LzLRDk4EcKbjeH2ZHeEksmx8');
   background-position: center;
   background-size: cover;
   min-height: 100vh;
@@ -12,8 +12,8 @@ body {
   height:100%;
 }
 
-.AddEvent, .Fund, .Login, .NgoDir, .SignupPage {
-  background-image: url('https://img.freepik.com/premium-photo/abstract-liquid-watercolor-background-with-golden-lines_525068-1440.jpg');
+.AddEvent, .Fund, .Login, .NgoDir, .Signup {
+  background-image: url('https://lh3.googleusercontent.com/proxy/356YR2pDHwmDjumzXz69wMO6AqHAQOCsP4d2MThcSeq1NwEEsU58FbQps0GEmblGEoc2EN5Y6nR24103gBhO8LTPbcD494sW1so3mpe0hkXiCvPU_S7LzLRDk4EcKbjeH2ZHeEksmx8');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

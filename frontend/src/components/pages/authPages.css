@@ -8,33 +8,37 @@
   }
   
   .signup-button,
-  .get-started-button {
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+.get-started-button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background: linear-gradient(135deg, #000000, #000000); /* Black gradient background */
+  color: #fff;
+}
+
+.signup-button:hover,
+.get-started-button:hover {
+  background: linear-gradient(135deg, #333333, #000000); /* Hover state with a reversed gradient */
+}
+
   
   .signup-button {
     background-color: #458f00;
     color: #fff;
   }
   
-  .signup-button:hover {
-    background-color: #005a0f;
-  }
+  
   
   .get-started-button {
     background-color: #458f00;
     color: #fff;
   }
   
-  .get-started-button:hover {
-    background-color: #005a0f;
-  }
+  
   /* For screens 1024px or smaller (tablets and landscape mobile) */
 @media (max-width: 1024px) {
     .auth-buttons-container {
@@ -74,7 +78,7 @@
   max-width: 600px;
   margin: 0 auto;
   padding: 2rem;
-  background-color: #fff;
+  background-color:  rgb(255, 255, 255);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -136,7 +140,10 @@ select.form-input {
 
 /* Background and general styling for the container */
 .background-region {
-  background-color: #f4f7f6;
+  background-image: url('https://lh3.googleusercontent.com/proxy/356YR2pDHwmDjumzXz69wMO6AqHAQOCsP4d2MThcSeq1NwEEsU58FbQps0GEmblGEoc2EN5Y6nR24103gBhO8LTPbcD494sW1so3mpe0hkXiCvPU_S7LzLRDk4EcKbjeH2ZHeEksmx8');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   min-height: 100vh;
   display: flex;
   justify-content: center;

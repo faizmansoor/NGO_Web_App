@@ -14,14 +14,18 @@ body{
   }
  
   .search-box,
-  .filter-select {
+  .filter-select,
+  .filter-box {  /* Add filter-box here */
     padding: 10px;
     font-size: 16px;
-    border: 2px solid #ccc;
+    border: 2px solid #050505;
     border-radius: 8px;
     margin-top: 50px;
-    height: 40px; /* Set a specific height for both elements */
+    height: 40px; /* Set the same height for both elements */
+    width: 30%;  /* Ensure all fields have the same width */
   }
+  
+
   
   .search-box {
     width: 30%;
@@ -56,7 +60,7 @@ body{
   
   .card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgb(255, 0, 0);
+    box-shadow: 0 8px 16px rgb(27, 79, 131);
   }
   
   .card h2 {

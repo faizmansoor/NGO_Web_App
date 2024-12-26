@@ -39,9 +39,9 @@ const EventList = () => {
 
     setShowForm(false);
   };
+
   const [cards, setCards] = useState([]);
   const [showForm, setShowForm] = useState(false);
-
   const [events, setEvents] = useState([]);
   const [search, setSearch] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
@@ -74,6 +74,17 @@ const EventList = () => {
 
   return (
     <div className="form-container">
+      {/* Header Section */}
+      <header className="header">
+      <img 
+        src="https://3.bp.blogspot.com/-1ah9wnLpmnU/V1KvwuBe1lI/AAAAAAAAGNQ/kbnjDHxAUmY5JmuHjw1_9VxIoxiKPI5IwCLcB/s1600/5.jpg" 
+        alt="..." 
+        className="header-image" 
+       /> 
+        <h1>Event Management</h1>
+        <p>Manage and browse events in your area</p>
+      </header>
+
       <button onClick={() => setShowForm(!showForm)}>
         {showForm ? "Close Form" : "Create New Event"}
       </button>
@@ -151,6 +162,7 @@ const EventList = () => {
           <button type="submit">Submit</button>
         </form>
       )}
+
       <div className="eventlist-container">
         <div className="filter-container">
           <span className="search-icon">🔍</span>
@@ -169,6 +181,7 @@ const EventList = () => {
             className="filter-box"
           />
         </div>
+
         <div className="cards-container">
           {error && <p className="error-message">{error}</p>}
           {filteredEvents.length > 0 ? (

@@ -79,52 +79,54 @@ const Fund = () => {
       </button>
 
       {showForm && (
-        <form onSubmit={handleSubmit}>
-          <h2>Fundraiser Registration</h2>
+        <div className="form-wrapper">
+          <form onSubmit={handleSubmit}>
+            <h2>Fundraiser Registration</h2>
 
-          <label htmlFor="name">Fundraiser Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Enter fundraiser name"
-            required
-          />
+            <label htmlFor="name">Fundraiser Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Enter fundraiser name"
+              required
+            />
 
-          <label htmlFor="description">Fundraiser Description</label>
-          <textarea
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            placeholder="Enter fundraiser description"
-            required
-          />
+            <label htmlFor="description">Fundraiser Description</label>
+            <textarea
+              id="description"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              placeholder="Enter fundraiser description"
+              required
+            />
 
-          <label htmlFor="image">Upload Fundraiser Image</label>
-          <input
-            type="file"
-            id="image"
-            name="image"
-            accept="image/*"
-            onChange={handleChange}
-            required
-          />
+            <label htmlFor="image">Upload Fundraiser Image</label>
+            <input
+              type="file"
+              id="image"
+              name="image"
+              accept="image/*"
+              onChange={handleChange}
+              required
+            />
 
-          <label htmlFor="qrCode">Upload QR Code for Fundraiser</label>
-          <input
-            type="file"
-            id="qrCode"
-            name="qrCode"
-            accept="image/*"
-            onChange={handleChange}
-            required
-          />
+            <label htmlFor="qrCode">Upload QR Code for Fundraiser</label>
+            <input
+              type="file"
+              id="qrCode"
+              name="qrCode"
+              accept="image/*"
+              onChange={handleChange}
+              required
+            />
 
-          <button type="submit">Submit</button>
-        </form>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
       )}
 
       <div className="search-container">

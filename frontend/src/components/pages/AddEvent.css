@@ -10,7 +10,26 @@ body {
     height: 100%;
     overflow-y: scroll; /* Ensure scrollbar stays at the right of the page */
 }
-
+header {
+    margin-top: 1400px;
+    text-align: center; /* Increase this if you have a header */
+}
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .header p {
+    font-size: 1.2rem;
+  }
+  .header-image {
+     /* Adjust as needed */
+     width: 100vw;
+    height: 500px;
+    margin-bottom: 10px;
+    object-fit: cover;
+   /* Optional */
+  }
 /* Main Container */
 .form-container {
     max-width: 1200px;
@@ -105,30 +124,59 @@ button:active {
 }
 
 /* Cards Grid Container */
-.cards-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Three cards per row */
-    gap: 20px; /* Spacing between cards */
-    width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-/* Card Styling */
 .card {
-    background: #077b4775;
+    background: #ffffff; /* Keep the original background */
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
     width: 100%;
     box-sizing: border-box; /* Prevent overflow */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    overflow: hidden; /* Ensure content doesn't spill out */
 }
+
+/* Card image styling */
 .card img {
     width: 100%;
     height: auto;
     margin-top: 10px;
     border-radius: 8px;
+    transition: transform 0.3s ease-in-out; /* Smooth zoom on hover */
+}
+
+/* Hover effect for cards */
+.card:hover {
+    transform: translateY(-10px); /* Lift the card on hover */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2); /* Stronger shadow effect */
+}
+
+/* Hover effect for the card image */
+.card:hover img {
+    transform: scale(1.05); /* Slight zoom on image */
+}
+
+/* Optional: Enhance hover effects for card content (like title or text) */
+.card h3 {
+    font-size: 1.6em;
+    color: rgb(70, 70, 70);
+    margin-top: 15px;
+    transition: color 0.3s ease;
+}
+
+.card:hover h3 {
+    color: #ffdd57; /* Change title color on hover */
+}
+
+.card p {
+    font-size: 1em;
+    color: rgb(70, 70, 70);
+    margin-top: 10px;
+    transition: color 0.3s ease;
+}
+
+.card:hover p {
+    color: #000000; /* Subtle text color change on hover */
 }
 @media (max-width: 1024px) {
     .form-container {

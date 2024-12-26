@@ -9,6 +9,8 @@ import ngoRoutes from "./routes/ngoRoutes.js";
 import eventRoutes from "./routes/eventRoutes.js";
 import fundraiserRoutes from "./routes/FundraiserRoutes.js";
 import cookieParser from "cookie-parser";
+import multer from "multer";
+
 
 const app = express();
 
@@ -16,11 +18,15 @@ const app = express();
 connectDb();
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:3000", // Frontend URL
+  credentials: true, // Allow cookies to be sent with the request
+}));
 app.use(morgan("dev")); // Log HTTP requests
 app.use(express.json()); // Parse JSON request body
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use('/uploads', express.static('uploads'));
 
 // Routes
 app.use("/api/ngos", ngoRoutes);

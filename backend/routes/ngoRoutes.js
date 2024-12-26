@@ -6,30 +6,52 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { verifyAuthToken } from "../middleware/authMiddleware.js";
 const router = express.Router();
+import multer from "multer";
 
-router.post("/register", async (req, res) => {
-  const { email, password, name } = req.body;
+const upload = multer({ dest: "uploads/" });
+
+
+
+
+router.post("/register",upload.single("ngo_picture"), async (req, res) => {
+  const {
+    name,
+    email,
+    password,
+    contact_number,
+    address,
+    ngo_type,
+    website_link,
+  } = req.body;
+  const ngo_picture = req.file;
+  console.log("Received Data:", req.body);  
 
   try {
-    // Check if the user already exists
-    let user = await NGO.findOne({ email });
-    if (user) {
-      return res.status(400).json({ message: "User already exists" });
+    // Check if the NGO already exists
+    let ngo = await NGO.findOne({ email });
+    if (ngo) {
+      return res.status(400).json({ message: "NGO already exists" });
     }
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    user = new NGO({
+    ngo = new NGO({
       name,
       email,
       password: hashedPassword,
+      contactNo: contact_number, 
+      address,
+      ngo_type,
+      website_link,
+      ngo_picture: ngo_picture ? `/uploads/${ngo_picture.filename}` : undefined,
+
     });
 
-    await user.save();
+    await ngo.save();
 
     // Create a payload for the JWT
-    const payload = { userId: user._id };
+    const payload = { ngoId: ngo._id };
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
@@ -37,20 +59,20 @@ router.post("/register", async (req, res) => {
     // Send the response with the token
     res.cookie("authToken", token, {
       httpOnly: true,
-      //secure: true, //use this in production
+      //secure: true, // Uncomment in production
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    // Send the user data or anything else you want here
     res.json({
-      message: "User registered successfully",
-      user: { name: user.name, email: user.email },
+      message: "NGO registered successfully",
+      ngo: { name: ngo.name, email: ngo.email },
     });
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server error");
   }
 });
+
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;

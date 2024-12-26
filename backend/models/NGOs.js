@@ -4,7 +4,7 @@ const NGOSchema = new mongoose.Schema({
     name: { type: String, unique: true, required: true, maxlength: 100 },
     email: { type: String, unique: true, required: true, match: /.+\@.+\..+/ },
     password: {type: String, required: true},
-    address: { type: String },
+    
     contactNo: { type: String, unique: true, minlength: 10, maxlength: 15 },
     // fundraisingLink: {
     //     type: String,
@@ -15,6 +15,7 @@ const NGOSchema = new mongoose.Schema({
     //         message: 'Invalid URL format.',
     //     },
     // },
+    address: { type: String },
     ngoType: {
         type: String,
         enum: ['Health', 'Education', 'Environment', 'Community', 'Others'],

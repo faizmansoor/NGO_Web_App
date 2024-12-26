@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./authPages.css"; // Link to the specific CSS for SignupPage
 import Navbar from "../Navbar";
+import axios from "axios";
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -24,10 +25,45 @@ const SignupPage = () => {
     setFormData({ ...formData, [name]: files[0] });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Handle form submission (e.g., send data to the server)
+
+    const formDataToSend = new FormData();
+    for (let key in formData) {
+      formDataToSend.append(key, formData[key]);
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/ngos/register",
+        formDataToSend,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true, // This ensures the cookie is set
+        }
+      );
+
+      console.log("Registration successful:", response.data);
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        contact_number: "",
+        address: "",
+        ngo_type: "",
+        website_link: "",
+        ngo_picture: null,
+      });
+      // Redirect or display success message
+    } catch (error) {
+      console.error(
+        "Error registering NGO:",
+        error.response?.data || error.message
+      );
+      // Handle errors here (e.g., show error message)
+    }
   };
 
   return (

@@ -9,9 +9,12 @@ const EventSchema = new mongoose.Schema(
     },
     name: { type: String, required: true },
     ngoName: { type: String, required: true },
-    date: { type: Date, required: true },
     location: { type: String, required: true },
     description: { type: String },
+    participants: { type: String },
+    eligibility: { type: String },
+    volunteerLink: { type: String },
+    
   },
   { timestamps: true }
 );

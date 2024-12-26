@@ -2,42 +2,54 @@ import express from "express";
 import Event from "../models/Events.js";
 import NGO from "../models/NGOs.js";
 import { verifyAuthToken } from "../middleware/authMiddleware.js";
+import { verifyToken } from '../components/cookie.js';
 
 const router = express.Router();
 
 // Create a new event
-router.post("/", verifyAuthToken, async (req, res) => {
+router.post("/", verifyToken, async (req, res) => {
   try {
-    const { ngoId, name, date, location, description } = req.body;
+    console.log("Request Body:", req.body);
+    const { event, participants, eligibility, location, description, volunteerLink } = req.body;
 
-    if (!ngoId || !name || !date || !location) {
+    if (!event || !location || !description) {
       return res.status(400).json({ message: "Required fields are missing." });
     }
 
-    // Ensure the logged-in NGO is the one creating the event
-    if (req.user !== ngoId) {
-      return res.status(403).json({
-        message: "Unauthorized: You can only create events for your own NGO.",
-      });
+    // Extract `ngoId` (userId) from the authenticated user's cookie
+    const ngoId = req.user?.userId;
+    console.log(ngoId);
+
+    // Fetch `ngoName` from the database using `ngoId`
+    const ngo = await NGO.findById(ngoId).select("name");
+    if (!ngo) {
+      return res.status(404).json({ message: "NGO not found." });
     }
+    const ngoName = ngo.name;
+    console.log(ngoName);
 
-    let ngoName = await NGO.findOne({ _id: ngoId }).select("name");
-
+    // Create new event without image
     const newEvent = new Event({
       ngoId,
-      name,
+      name: event, // Map `event` to `name`
       ngoName,
-      date,
       location,
       description,
+      participants,
+      eligibility,
+      volunteerLink,
+      
     });
+
+    // Save event to database
     await newEvent.save();
-    res.status(201).json(newEvent);
+
+    // Respond with the created event
+    res.status(201).json({ success: true, data: newEvent });
+
   } catch (err) {
     console.error(err);
-    res
-      .status(400)
-      .json({ message: "Error creating event", error: err.message });
+    res.status(400).json({ message: "Error creating event", error: err.message });
   }
 });
 

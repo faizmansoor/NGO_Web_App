@@ -7,7 +7,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-logo">
         <Link to="/" className="navbar-title">
-          Ngoverse
+          NgoVerse
         </Link>
       </div>
       <ul className="navbar-links">

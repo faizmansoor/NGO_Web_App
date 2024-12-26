@@ -5,12 +5,11 @@ import './AboutUs.css'; // Import the CSS file for About Us styling
 const AboutUs = () => {
   return (
     <div className="home-container">
-      <Navbar />
       <video src='/videos/videof.mp4' autoPlay loop muted playsInline />
       <div className="about-us-content">
         <h1>About Us</h1>
         <p>
-          Welcome to NGOverse! We are dedicated to connecting NGOs with people who want to make a difference.
+          Welcome to NgoVerse! We are dedicated to connecting NGOs with people who want to make a difference.
           Our platform helps raise awareness and fosters collaboration to tackle social challenges.
         </p>
         <section className="mission">

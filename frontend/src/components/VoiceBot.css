@@ -1,0 +1,28 @@
+.voicebot-toggle-button {
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .voicebot-toggle-button:hover {
+    opacity: 0.8;
+  }
+  
+  Copy.voicebot-container {
+    background: transparent; /* This removes the teal background */
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: relative; /* Add this to ensure proper layering */
+    z-index: 2; /* Add this to keep the button above the video */
+  }
+
+  
+  
+  h1 {
+    color: #333;
+  }
+  
+ 

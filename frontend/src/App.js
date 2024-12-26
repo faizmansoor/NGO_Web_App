@@ -6,6 +6,7 @@ import AddEvent from "./components/pages/AddEvent";
 import AboutUs from "./components/pages/AboutUs";
 import Login from "./components/pages/Login";
 import Signup from "./components/pages/Signup";
+import VoiceBot from "./components/VoiceBot";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
@@ -15,7 +16,9 @@ const App = () => {
   return (
     <Router>
       <div className="app">
+        
         <Navbar /> {/* Navbar will now be present on all pages */}
+        <VoiceBot/>
         <Routes>
           <Route path="/" element={<AboutUs />} />
           <Route path="/NgoDir" element={<NgoDir />} />

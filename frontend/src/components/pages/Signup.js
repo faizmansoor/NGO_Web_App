@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./authPages.css"; // Link to the specific CSS for SignupPage
+import "./authPages.css";
 import Navbar from "../Navbar";
 import axios from "axios";
 
@@ -12,7 +12,7 @@ const SignupPage = () => {
     address: "",
     ngo_type: "",
     website_link: "",
-    ngo_picture: null, // For file upload (image)
+    ngo_picture_url: "", // Changed to store image URL instead of file
   });
 
   const handleChange = (e) => {
@@ -20,28 +20,18 @@ const SignupPage = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleFileChange = (e) => {
-    const { name, files } = e.target;
-    setFormData({ ...formData, [name]: files[0] });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const formDataToSend = new FormData();
-    for (let key in formData) {
-      formDataToSend.append(key, formData[key]);
-    }
 
     try {
       const response = await axios.post(
         "http://localhost:5000/api/ngos/register",
-        formDataToSend,
+        formData, // Now sending regular JSON instead of FormData
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json", // Changed to JSON content type
           },
-          withCredentials: true, // This ensures the cookie is set
+          withCredentials: true,
         }
       );
 
@@ -54,7 +44,7 @@ const SignupPage = () => {
         address: "",
         ngo_type: "",
         website_link: "",
-        ngo_picture: null,
+        ngo_picture_url: "",
       });
       // Redirect or display success message
     } catch (error) {
@@ -62,7 +52,7 @@ const SignupPage = () => {
         "Error registering NGO:",
         error.response?.data || error.message
       );
-      // Handle errors here (e.g., show error message)
+      // Handle errors here
     }
   };
 
@@ -166,12 +156,14 @@ const SignupPage = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="ngo_picture">NGO Picture</label>
+            <label htmlFor="ngo_picture_url">NGO Picture URL</label>
             <input
-              type="file"
-              id="ngo_picture"
-              name="ngo_picture"
-              onChange={handleFileChange}
+              type="url"
+              id="ngo_picture_url"
+              name="ngo_picture_url"
+              value={formData.ngo_picture_url}
+              onChange={handleChange}
+              placeholder="Enter image URL"
               className="form-input"
             />
           </div>

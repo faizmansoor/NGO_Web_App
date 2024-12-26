@@ -6,8 +6,8 @@ const Fund = () => {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
-    image: null,
-    qrCode: null,
+    imageUrl: "",
+    qrCodeUrl: "",
   });
 
   const [fundraisers, setFundraisers] = useState([]);
@@ -20,7 +20,7 @@ const Fund = () => {
     const checkAuthStatus = async () => {
       try {
         const response = await axios.get("http://localhost:5000/check-auth", {
-          withCredentials: true, // Ensure credentials (cookies) are sent with the request
+          withCredentials: true,
         });
 
         if (response.data.isAuthenticated) {
@@ -51,39 +51,34 @@ const Fund = () => {
   }, []);
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    if (name === "image" || name === "qrCode") {
-      setFormData({ ...formData, [name]: files[0] });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const form = new FormData();
-    form.append("name", formData.name);
-    form.append("description", formData.description);
-    form.append("image", formData.image);
-    form.append("qrCodeImage", formData.qrCode);
-
+    
     try {
-      // Send the form data to the backend along with the authentication token
       const response = await axios.post(
         "http://localhost:5000/api/fundraisers",
-        form,
+        formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json",
           },
-          withCredentials: true, // Ensure the cookie is sent with the request
+          withCredentials: true,
         }
       );
 
       if (response.data.success) {
         setFundraisers([...fundraisers, response.data.data]);
         setShowForm(false);
-        setFormData({ name: "", description: "", image: null, qrCode: null });
+        setFormData({
+          name: "",
+          description: "",
+          imageUrl: "",
+          qrCodeUrl: "",
+        });
       }
     } catch (err) {
       console.log(err);
@@ -129,23 +124,25 @@ const Fund = () => {
             required
           />
 
-          <label htmlFor="image">Upload Fundraiser Image</label>
+          <label htmlFor="imageUrl">Fundraiser Image URL</label>
           <input
-            type="file"
-            id="image"
-            name="image"
-            accept="image/*"
+            type="url"
+            id="imageUrl"
+            name="imageUrl"
+            value={formData.imageUrl}
             onChange={handleChange}
+            placeholder="Enter image URL"
             required
           />
 
-          <label htmlFor="qrCode">Upload QR Code for Fundraiser</label>
+          <label htmlFor="qrCodeUrl">QR Code URL</label>
           <input
-            type="file"
-            id="qrCode"
-            name="qrCode"
-            accept="image/*"
+            type="url"
+            id="qrCodeUrl"
+            name="qrCodeUrl"
+            value={formData.qrCodeUrl}
             onChange={handleChange}
+            placeholder="Enter QR code image URL"
             required
           />
 
@@ -168,11 +165,11 @@ const Fund = () => {
           <div className="card" key={index}>
             <h3>{fundraiser.name}</h3>
             <p>{fundraiser.description}</p>
-            {fundraiser.image && (
-              <img src={`/${fundraiser.image}`} alt="Fundraiser" />
+            {fundraiser.imageUrl && (
+              <img src={fundraiser.imageUrl} alt="Fundraiser" />
             )}
-            {fundraiser.qrCodeImage && (
-              <img src={`/${fundraiser.qrCodeImage}`} alt="QR Code" />
+            {fundraiser.qrCodeUrl && (
+              <img src={fundraiser.qrCodeUrl} alt="QR Code" />
             )}
           </div>
         ))}

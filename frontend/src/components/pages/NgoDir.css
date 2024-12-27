@@ -31,12 +31,24 @@ body{
     width: 10%;
   }
   
-  .cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
+  /* Add a nice font (Google Font for example) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif; /* Apply the chosen font */
+}
+
+.cards-container p {
+  font-size: 1.1rem; /* Slightly increase font size */
+  font-weight: 500; /* Make the text a little bolder */
+  letter-spacing: 0.5px; /* Adjust letter spacing for better text strength */
+  color: #333; /* Optional: Adjust color for better contrast */
+}
+
   
 
   

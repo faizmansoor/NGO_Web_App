@@ -60,7 +60,11 @@ const NgoDir = () => {
         </select>
         <input
           type="text"
-          placeholder="Filter by location..."
+          placeholder="Search by location..."
+          style={{
+            height: "42px",
+            marginTop: "50px",
+          }}
           value={locationFilter}
           onChange={(e) => setLocationFilter(e.target.value)}
           className="filter-box"

@@ -1,0 +1,137 @@
+.navbar {
+    position:fixed;
+    display: flex;
+    justify-content: flex-end; /* Align the items towards the end */
+    align-items: center;
+    background: rgb(0, 0, 0);
+    padding: 3px;
+    border-radius: 0;
+    margin-bottom: 20px;
+    position: sticky;
+    top: 0;
+    padding-top: 60px;
+    box-sizing: border-box;
+    width:100%;
+    max-width: 100%;
+    z-index:1000;
+    overflow: hidden;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  
+  .navbar-logo {
+    font-size: 24px;
+    font-style: italic;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: auto; /* Push the logo to the left */
+  }
+  
+  .nav-item {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 10px; /* Add some padding for spacing */
+    margin-right: 240px; /* Space out the tabs a little bit */
+    text-align: center;
+    color: rgb(255, 255, 255);
+  }
+  
+  .navbar .nav-item:first-child {
+    margin-right: 100; /* Remove the left margin for the first tab */
+  }
+
+  .navbar-title {
+    text-decoration: none;
+    color: #fffffff6;
+  }
+  
+  .navbar-title:hover {
+    color: #ff0000;
+  }
+
+  .navbar-links {
+    list-style-type: none;
+  display: flex;
+  justify-content: space-evenly; /* Space out the tabs evenly */
+  gap: 20px; /* Add consistent space between tabs */
+  width: 100%;
+  padding: 0;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-size: large;
+  }
+  
+  .navbar-links li {
+    display: inline;
+    text-align: center;
+  }
+  
+  .navbar-links a {
+    text-decoration: none;
+    color: #ffffff;
+    transition: color 0.3s;
+    font-weight: bold;
+    .nav-links a {
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    }
+    
+  }
+  
+  .navbar-links a:hover {
+    color: rgb(244, 6, 6);
+  }
+  @media (max-width: 1024px) {
+    .navbar {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        padding: 15px;
+    }
+
+    .navbar-logo {
+        font-size: 20px;
+    }
+
+    .nav-item {
+        margin-right: 0; /* Remove extra space between items */
+        padding: 5px 0; /* Adjust padding for better alignment */
+    }
+
+    .navbar-links {
+        flex-direction: column; /* Stack the links vertically */
+        gap: 10px;
+    }
+
+    .navbar-links a {
+        font-size: 16px; /* Slightly smaller font size for better readability */
+    }
+}
+
+/* For mobile devices (max-width: 768px) */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Stack items vertically */
+        padding: 20px;
+    }
+
+    .navbar-logo {
+        font-size: 18px; /* Further reduce logo size */
+    }
+
+    .nav-item {
+        padding: 5px 0; /* Adjust padding for better spacing */
+        margin-right: 0;
+    }
+
+    .navbar-links {
+        flex-direction: column; /* Stack links vertically */
+        gap: 8px;
+    }
+
+    .navbar-links a {
+        font-size: 14px; /* Smaller font size for better mobile experience */
+    }
+}

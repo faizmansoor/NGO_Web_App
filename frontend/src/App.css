@@ -1,0 +1,28 @@
+/* App.css */
+body {
+  
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+ /* background-image: url('https://img.freepik.com/premium-photo/abstract-liquid-watercolor-background-with-golden-lines_525068-1440.jpg');*/
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  color: #000000;
+  overflow-y: scroll;
+  height:100%;
+}
+
+.AddEvent, .Fund, .Login, .NgoDir, .SignupPage {
+  background-image: url('https://img.freepik.com/premium-photo/abstract-liquid-watercolor-background-with-golden-lines_525068-1440.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+  font-size: 100px;
+  height:100vh;
+}
+/* VoiceBot button styling */
+/* VoiceBot button styling */
+/* VoiceBot button styling */
+
+

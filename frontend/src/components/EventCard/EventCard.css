@@ -1,0 +1,26 @@
+/* Add card-specific styles here */
+.event-card {
+  background: #077b4775;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box; /* Prevents overflow */
+}
+
+.event-card img {
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+/* Cards container adjustment */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three cards per row */
+  gap: 30px; /* Increased gap between cards */
+  padding: 20px;
+  box-sizing: border-box;
+}

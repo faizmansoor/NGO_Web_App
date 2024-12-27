@@ -1,0 +1,149 @@
+.auth-buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem; /* Adds space between buttons */
+    padding-top: 0%; /* Reduced padding from the login form */
+    width: 100%;
+  }
+  
+  
+  .signup-button,
+  .get-started-button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .signup-button {
+    background-color: #458f00;
+    color: #fff;
+  }
+  
+  .signup-button:hover {
+    background-color: #005a0f;
+  }
+  
+  .get-started-button {
+    background-color: #458f00;
+    color: #fff;
+  }
+  
+  .get-started-button:hover {
+    background-color: #005a0f;
+  }
+  /* For screens 1024px or smaller (tablets and landscape mobile) */
+@media (max-width: 1024px) {
+    .auth-buttons-container {
+      gap: 1rem; /* Space between buttons remains the same */
+      padding-top: 1rem; /* Adds a bit of space at the top for better visual balance */
+    }
+  
+    .signup-button,
+    .get-started-button {
+      padding: 0.8rem 1.2rem;  /* Slightly reduce padding for smaller screens */
+      font-size: 0.9rem;  /* Reduce button font size */
+    }
+  }
+  
+  /* For screens 768px or smaller (mobile devices) */
+  @media (max-width: 768px) {
+    .auth-buttons-container {
+      flex-direction: column;  /* Stack buttons vertically on smaller screens */
+      gap: 1.5rem; /* Increase space between buttons when stacked */
+      padding-top: 1rem;  /* Adds space at the top */
+    }
+  
+    .signup-button,
+    .get-started-button {
+      width: 100%;  /* Make buttons fill the full width on small screens */
+      padding: 1rem;  /* Adjust padding to make buttons easier to click */
+      font-size: 1rem;  /* Keep the font size readable */
+    }
+  }
+  
+
+
+
+/* SIGN UP PAGE General Page Styles */
+/* authPages.css */
+.signup-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: auto;
+  margin-top: 90px;
+}
+
+.signup-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.form-input {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+  min-height: 40px;
+}
+
+textarea.form-input {
+  min-height: 120px;
+}
+
+select.form-input {
+  height: 40px;
+}
+
+.form-submit-button {
+  padding: 0.75rem;
+  font-size: 1.2rem;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-submit-button:hover {
+  background-color: #45a049;
+}
+
+/* Background and general styling for the container */
+.background-region {
+  background-color: #f4f7f6;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+.login-button{
+  margin-top: 0.1%;
+}

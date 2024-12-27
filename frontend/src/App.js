@@ -1,31 +1,37 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './Login';
-import AboutUs from './AboutUs';
-import SignupPage from './SignupPage'; // Create this if it doesn't exist yet
-import HomePage from './HomePage';
+import React from "react";
+import Navbar from "./components/Navbar";
+import NgoDir from "./components/pages/NgoDir";
+import Fund from "./components/pages/Fund";
+import AddEvent from "./components/pages/AddEvent";
+import AboutUs from "./components/pages/AboutUs";
+import Login from "./components/pages/Login";
+import Signup from "./components/pages/Signup";
+import VoiceBot from "./components/VoiceBot";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
 
-function App() {
+const App = () => {
+  console.log("App component rendered");
+
   return (
     <Router>
-      <div className="App">
+      <div className="app">
+        
+        <Navbar /> {/* Navbar will now be present on all pages */}
+        
         <Routes>
-          {/* Route for home page */}
-          <Route path="/home" element={<HomePage />} /> 
-          
-          {/* Route for signup page */}
-          <Route path="/signup" element={<SignupPage />} />
-
-          {/* Route for home page */}
-          <Route path="/login" element={<Login />} /> 
-
-          {/* Route for about us page */}
-          <Route path="/" element={<AboutUs />} /> 
+          <Route path="/" element={<AboutUs />} />
+          <Route path="/NgoDir" element={<NgoDir />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/fund" element={<Fund />} />
+          <Route path="/addevent" element={<AddEvent />} />
         </Routes>
+        <VoiceBot  />
       </div>
     </Router>
   );
-}
+};
 
 export default App;
 

@@ -1,27 +1,18 @@
-import pg from 'pg';  // Default import
-import dotenv from 'dotenv';  // Load environment variables before other imports
+// Load environment variables before other imports
+import dotenv from 'dotenv';
 dotenv.config();
 
-// Use destructuring to get the Client class
-const { Client } = pg;
+// Import Mongoose
+import mongoose from 'mongoose';
 
+const connectDb = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URL);  // No need for useNewUrlParser and useUnifiedTopology
+    console.log('MongoDB connected successfully');
+  } catch (err) {
+    console.error('Error connecting to MongoDB:', err.message);
+    process.exit(1); // Exit process with failure
+  }
+};
 
-// Create a new instance of the PostgreSQL client
-const db = new Client({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST || 'localhost',
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT || 5432,
-});
-
-// Connect to the PostgreSQL database
-db.connect()
-  .then(() => {
-    console.log('Connected to the PostgreSQL database');
-  })
-  .catch((err) => {
-    console.error('Error connecting to the database:', err.stack);
-  });
-
-export default db;
+export default connectDb;

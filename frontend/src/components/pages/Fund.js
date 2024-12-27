@@ -104,7 +104,9 @@ const Fund = () => {
       )}
 
       {showForm && (
+        <div className="magic-form">
         <form onSubmit={handleSubmit}>
+          
           <h2>Fundraiser Registration</h2>
 
           <label htmlFor="name">Fundraiser Name</label>
@@ -152,6 +154,7 @@ const Fund = () => {
 
           <button type="submit">Submit</button>
         </form>
+        </div>
       )}
 
       <div className="search-container">

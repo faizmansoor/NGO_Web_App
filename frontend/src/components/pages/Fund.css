@@ -108,6 +108,7 @@ button:active {
 /* Search Bar */
 .search-container {
     margin: 20px 0;
+    margin-top: 5px;
     text-align: center;
 }
 
@@ -175,6 +176,15 @@ button:active {
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+  }
+  .magic-form{
+    display: flex;               /* Enable flexbox */
+    justify-content: center;     /* Center horizontally */
+    align-items: center;         /* Center vertically */
+    width: 100%;                 /* Ensure it takes the full width */
+    height: 100%; 
+    margin-top: 2%;
+
   }
   
 

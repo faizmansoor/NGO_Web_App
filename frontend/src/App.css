@@ -21,3 +21,23 @@ body {
   font-size: 100px;
   height:100vh;
 }
+/* VoiceBot button styling */
+/* VoiceBot button styling */
+.voice-bot {
+  /* Fixed relative to the viewport */
+ 
+  border: none; /* Remove border */
+  color: white; /* Set text color */
+  cursor: pointer; /* Change cursor on hover */
+  font-size: 18px; /* Adjust font size as needed */
+  padding: 10px; /* Add padding for better clickability */
+  margin: 100px;
+  outline: none; /* Remove focus outline (optional) */
+}
+
+/* Optional: Hover effect */
+.voice-bot:hover {
+  color: #ffcc00; /* Change color on hover */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Add glowing effect */
+}
+

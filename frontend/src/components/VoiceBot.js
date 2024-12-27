@@ -80,7 +80,7 @@ const VoiceBot = () => {
           cursor: "pointer",
         }}
       >
-        {isVoiceBotEnabled ? "Disable Voice Bot" : "Enable Voice Bot"}
+        {isVoiceBotEnabled ? "Disable Voice Bot" : "Voice Bot"}
       </button>
     </div>
   );

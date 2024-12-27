@@ -97,6 +97,10 @@ const Fund = () => {
       {isAuthenticated && (
         <div className = "form-btn">
         <button onClick={() => setShowForm(!showForm)}
+        style={{
+          height: "55px",
+          marginTop: "30px", // Adjust the height as needed
+        }}
         className="toggle-form-btn">
           {showForm ? "Close Form" : "Create a Fundraiser"}
         </button>
@@ -158,12 +162,14 @@ const Fund = () => {
       )}
 
       <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search fundraisers..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
+      <input
+  type="text"
+  placeholder="Search fundraisers..."
+  value={query}
+  onChange={(e) => setQuery(e.target.value)}
+  style={{ width: "80%" }} // Adjust the width as needed
+/>
+
       </div>
 
       <div className="card-container">

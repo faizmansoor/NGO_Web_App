@@ -238,7 +238,7 @@ return (
           filteredEvents.map((event, index) => (
             <div key={index} className="card">
               <h2>{event.name}</h2>
-              <p><strong>Organized by:</strong> {event.ngoName}</p>
+              <p><strong><b>Organized by:</b></strong> {event.ngoName}</p>
               <p>{event.location}</p>
               <p>{event.description}</p>
               {event.volunteerLink && (

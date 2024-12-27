@@ -60,8 +60,22 @@ const SignupPage = () => {
   return (
     <div>
       <Navbar />
-      <div className="background-region">
-        <form onSubmit={handleSubmit} className="signup-form">
+      <div
+        className="background-region"
+        style={{
+          backgroundImage:
+            "url('https://img.freepik.com/premium-photo/abstract-liquid-watercolor-background-with-golden-lines_525068-1440.jpg')",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          fontSize: "100px",
+        }}
+      >
+        <form onSubmit={handleSubmit} className="signup-form"
+         style={{
+          backgroundColor: "#077b4775", // Apply background color
+          
+        }}>
           <h1 className="signup-title">Sign Up</h1>
 
           <div className="form-group">
@@ -74,6 +88,11 @@ const SignupPage = () => {
               onChange={handleChange}
               required
               className="form-input"
+              style={{
+                width: "100%", // Ensure all fields are the same width
+                height: "40px", // Increase height slightly
+                padding: "10px",
+              }}
             />
           </div>
 
@@ -87,6 +106,11 @@ const SignupPage = () => {
               onChange={handleChange}
               required
               className="form-input"
+              style={{
+                width: "100%", // Same width
+                height: "40px", // Same height as the others
+                padding: "10px",
+              }}
             />
           </div>
 
@@ -100,6 +124,11 @@ const SignupPage = () => {
               onChange={handleChange}
               required
               className="form-input"
+              style={{
+                width: "100%",
+                height: "40px",
+                padding: "10px",
+              }}
             />
           </div>
 
@@ -112,6 +141,11 @@ const SignupPage = () => {
               value={formData.contact_number}
               onChange={handleChange}
               className="form-input"
+              style={{
+                width: "100%",
+                height: "40px",
+                padding: "10px",
+              }}
             />
           </div>
 
@@ -123,10 +157,15 @@ const SignupPage = () => {
               value={formData.address}
               onChange={handleChange}
               className="form-input"
+              style={{
+                width: "100%",
+                height: "60px", // Slightly increased height for textarea
+                padding: "10px",
+              }}
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group" style={{ marginRight: "60px" }}>
             <label htmlFor="ngo_type">NGO Type</label>
             <select
               id="ngo_type"
@@ -134,6 +173,11 @@ const SignupPage = () => {
               value={formData.ngo_type}
               onChange={handleChange}
               className="form-input"
+              style={{
+                width: "100%",
+                height: "40px",
+                padding: "10px",
+              }}
             >
               <option value="">Select Type</option>
               <option value="Health">Health</option>
@@ -153,6 +197,11 @@ const SignupPage = () => {
               value={formData.website_link}
               onChange={handleChange}
               className="form-input"
+              style={{
+                width: "100%",
+                height: "40px",
+                padding: "10px",
+              }}
             />
           </div>
 
@@ -166,6 +215,11 @@ const SignupPage = () => {
               onChange={handleChange}
               placeholder="Enter image URL"
               className="form-input"
+              style={{
+                width: "100%",
+                height: "40px",
+                padding: "10px",
+              }}
             />
           </div>
 

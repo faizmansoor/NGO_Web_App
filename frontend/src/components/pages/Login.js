@@ -38,10 +38,29 @@ const Login = () => {
   return (
     <div>
       <Navbar /> {/* Add the Navbar component here */}
-      <div className="background-region">
+      <div
+        className="background-region"
+        style={{
+          backgroundImage: "url('https://img.freepik.com/premium-photo/abstract-liquid-watercolor-background-with-golden-lines_525068-1440.jpg')",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          color: "#fff",
+          fontSize: "100px",
+          height: "100vh",
+          minHeight: "100vh"
+        }}
+      >
         <div>
           <div className="login-container">
-            <form className="signup-form" onSubmit={handleSubmit}>
+            <form className="signup-form" onSubmit={handleSubmit}
+             style={{
+              backgroundColor: "#077b4775", // Apply background color
+              padding: "20px", // Add some padding for spacing
+              borderRadius: "10px", // Optionally, add border-radius for rounded corners
+              maxWidth: "400px", // Optionally, set a max width for the form
+              margin: "auto", // Center the form horizontally
+            }}>
               <h2>NGO Login</h2>
               {errorMessage && <p className="error-message">{errorMessage}</p>}
               <input
@@ -65,7 +84,7 @@ const Login = () => {
               </button>
             </form>
           </div>
-
+  
           <div className="auth-buttons-container">
             <Link to="/signup">
               <button className="signup-button">

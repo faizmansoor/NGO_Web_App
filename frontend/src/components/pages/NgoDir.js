@@ -81,9 +81,9 @@ const NgoDir = () => {
                 className="ngo-image"
               />
               <h2>{ngo.name}</h2>
-              <p>Contact: {ngo.contactNo}</p>
-              <p>Type: {ngo.ngoType}</p>
-              <p>Address: {ngo.address}</p>
+              <p><b>Contact:</b> {ngo.contactNo}</p>
+              <p><b>Type: </b>{ngo.ngoType}</p>
+              <p><b>Address: </b>{ngo.address}</p>
               <a
                 href={ngo.websiteLink}
                 target="_blank"

@@ -15,11 +15,11 @@ const FundraiserSchema = new mongoose.Schema(
       type: String,
       required: true, // The description of the fundraiser
     },
-    image: {
+    imageUrl: {
       type: String, // URL to the image representing the fundraiser
       required: false,
     },
-    qrCodeImage: {
+    qrCodeUrl: {
       type: String, // URL to the QR code image associated with the fundraiser
       required: false,
     },

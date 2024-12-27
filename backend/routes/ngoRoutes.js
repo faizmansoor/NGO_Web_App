@@ -19,8 +19,9 @@ router.post("/register", async (req, res) => {
     address,
     ngo_type,
     website_link,
-    ngo_picture, // This will now be a URL from FreeImage
+    picUrl, // This will now be a URL from FreeImage
   } = req.body;
+  console.log(req.body);
 
   try {
     // Check if the NGO already exists
@@ -40,7 +41,7 @@ router.post("/register", async (req, res) => {
       address,
       ngo_type,
       website_link,
-      ngo_picture, // Save the URL directly
+      picUrl, // Save the URL directly
     });
 
     await ngo.save();

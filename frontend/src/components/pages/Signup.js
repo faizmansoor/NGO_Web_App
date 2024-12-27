@@ -12,7 +12,7 @@ const SignupPage = () => {
     address: "",
     ngo_type: "",
     website_link: "",
-    ngo_picture_url: "", // Changed to store image URL instead of file
+    picUrl: "", // Changed to store image URL instead of file
   });
 
   const handleChange = (e) => {
@@ -35,6 +35,7 @@ const SignupPage = () => {
         }
       );
 
+      console.log(formData);
       console.log("Registration successful:", response.data);
       setFormData({
         name: "",
@@ -44,7 +45,7 @@ const SignupPage = () => {
         address: "",
         ngo_type: "",
         website_link: "",
-        ngo_picture_url: "",
+        picUrl: "",
       });
       // Redirect or display success message
     } catch (error) {
@@ -156,12 +157,12 @@ const SignupPage = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="ngo_picture_url">NGO Picture URL</label>
+            <label htmlFor="picUrl">NGO Picture URL</label>
             <input
               type="url"
-              id="ngo_picture_url"
-              name="ngo_picture_url"
-              value={formData.ngo_picture_url}
+              id="picUrl"
+              name="picUrl"
+              value={formData.picUrl}
               onChange={handleChange}
               placeholder="Enter image URL"
               className="form-input"

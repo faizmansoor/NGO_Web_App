@@ -220,9 +220,14 @@ return (
           placeholder="Search by location..."
           style={{
             height: "42px",
+            border: "1px solid #ccc",
+             borderRradius: "4px",
+             boxShadow: "none",
           }}
           value={locationFilter}
           onChange={(e) => setLocationFilter(e.target.value)}
+          onFocus={(e) => (e.target.style.border = "2px solid blue")}
+          onBlur={(e) => (e.target.style.border = "1px solid #ccc")}
           className="filter-box"
         />
       </div>

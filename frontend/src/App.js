@@ -27,7 +27,7 @@ const App = () => {
           <Route path="/fund" element={<Fund />} />
           <Route path="/addevent" element={<AddEvent />} />
         </Routes>
-        <VoiceBot/>
+        <VoiceBot  />
       </div>
     </Router>
   );

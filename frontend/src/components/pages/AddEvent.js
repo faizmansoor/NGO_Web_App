@@ -126,159 +126,166 @@ const EventList = () => {
     );
   });
 
-  return (
-    <div className="form-container">
-      {isAuthenticated && (
-        <button onClick={() => setShowForm(!showForm)}>
-          {showForm ? "Close Form" : "Create New Event"}
-        </button>
-      )}
+  
+return (
+  <div className="form-container">
+    {isAuthenticated && (
+      <button onClick={() => setShowForm(!showForm)}>
+        {showForm ? "Close Form" : "Create New Event"}
+      </button>
+    )}
 
-      {showForm && (
-        <form onSubmit={handleSubmit}>
-          <h2>Event Registration</h2>
-          <label htmlFor="event">Event Name</label>
-          <input
-            type="text"
-            id="event"
-            name="event"
-            value={formData.event}
-            onChange={handleChange}
-            placeholder="Enter event name"
-            required
-          />
-          <label htmlFor="participants">Number of Participants</label>
-          <input
-            type="number"
-            id="participants"
-            name="participants"
-            value={formData.participants}
-            onChange={handleChange}
-            placeholder="Enter number of participants"
-            min="0"
-            required
-          />
-          <label htmlFor="eligibility">Eligibility Conditions</label>
-          <textarea
-            id="eligibility"
-            name="eligibility"
-            value={formData.eligibility}
-            onChange={handleChange}
-            placeholder="Enter eligibility conditions"
-            required
-          />
-          <label htmlFor="location">Event Location</label>
-          <input
-            type="text"
-            id="location"
-            name="location"
-            value={formData.location}
-            onChange={handleChange}
-            placeholder="Enter event location"
-            required
-          />
-          <label htmlFor="description">Event Description</label>
-          <textarea
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            placeholder="Enter event description"
-            required
-          />
-          <label htmlFor="volunteerLink">Volunteer Registration Link</label>
-          <input
-            type="url"
-            id="volunteerLink"
-            name="volunteerLink"
-            value={formData.volunteerLink}
-            onChange={handleChange}
-            placeholder="Enter volunteer registration link"
-            required
-          />
-          
-          <button type="submit">Submit</button>
-        </form>
-      )}
+    {showForm && (
+      <form onSubmit={handleSubmit}>
+        <h2>Event Registration</h2>
+        <label htmlFor="event">Event Name</label>
+        <input
+          type="text"
+          id="event"
+          name="event"
+          value={formData.event}
+          onChange={handleChange}
+          placeholder="Enter event name"
+          required
+        />
+        <label htmlFor="participants">Number of Participants</label>
+        <input
+          type="number"
+          id="participants"
+          name="participants"
+          value={formData.participants}
+          onChange={handleChange}
+          placeholder="Enter number of participants"
+          min="0"
+          required
+        />
+        <label htmlFor="eligibility">Eligibility Conditions</label>
+        <textarea
+          id="eligibility"
+          name="eligibility"
+          value={formData.eligibility}
+          onChange={handleChange}
+          placeholder="Enter eligibility conditions"
+          required
+        />
+        <label htmlFor="location">Event Location</label>
+        <input
+          type="text"
+          id="location"
+          name="location"
+          value={formData.location}
+          onChange={handleChange}
+          placeholder="Enter event location"
+          required
+        />
+        <label htmlFor="description">Event Description</label>
+        <textarea
+          id="description"
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+          placeholder="Enter event description"
+          required
+        />
+        <label htmlFor="volunteerLink">Volunteer Registration Link</label>
+        <input
+          type="url"
+          id="volunteerLink"
+          name="volunteerLink"
+          value={formData.volunteerLink}
+          onChange={handleChange}
+          placeholder="Enter volunteer registration link"
+          required
+        />
+        
+        <button type="submit">Submit</button>
+      </form>
+    )}
 
-      <div className="eventlist-container">
-        <div className="filter-container">
-          <span className="search-icon">🔍</span>
-          <input
-            type="text"
-            placeholder="Search by name..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="search-box"
-          />
-          <input
-            type="text"
-            placeholder="Filter by location..."
-            value={locationFilter}
-            onChange={(e) => setLocationFilter(e.target.value)}
-            className="filter-box"
-          />
-        </div>
+    <div className="eventlist-container">
+      <div className="filter-container">
+        <span className="search-icon">🔍</span>
+        <input
+          type="text"
+          placeholder="Search by name..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          style={{
+            height: "35%",
+          }}
+          className="search-box"
+        />
+        <input
+          type="text"
+          placeholder="Search by location..."
+          style={{
+            height: "42px",
+          }}
+          value={locationFilter}
+          onChange={(e) => setLocationFilter(e.target.value)}
+          className="filter-box"
+        />
+      </div>
 
-        <div className="cards-container">
-          {error && <p className="error-message">{error}</p>}
-          {filteredEvents.length > 0 ? (
-            filteredEvents.map((event, index) => (
-              <div key={index} className="card">
-                <h2>{event.name}</h2>
-                <p><strong>Organized by:</strong> {event.ngoName}</p>
-                <p>{event.location}</p>
-                <p>{event.description}</p>
-                {event.volunteerLink && (
-                  <p style={{ fontWeight: "bold" }}>
-                    <a
-                      href={event.volunteerLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Register here
-                    </a>
-                  </p>
-                )}
-              {event.ngoId === userId && (
-  <button
-    style={{
-      all: "unset", // Reset all styles
-      position: "absolute",  // Absolute position within the card container
-      top: "10px", // Adjust top position within the card
-      right: "10px", // Adjust right position within the card
-      width: "30px",  // Smaller size
-      height: "30px", // Same width and height for a perfect circle
-      borderRadius: "50%",
-      backgroundColor: "darkgreen",
-      color: "white",
-      fontSize: "18px", // Smaller "X"
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      cursor: "pointer",
-      boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-    }}
-    onMouseEnter={(e) => e.target.style.backgroundColor = "darkgreen"}
-    onMouseLeave={(e) => e.target.style.backgroundColor = "darkgreen"}
-    onClick={() => handleDelete(event._id)}
-  >
-    X
-  </button>
+      <div className="cards-container">
+        {error && <p className="error-message">{error}</p>}
+        {filteredEvents.length > 0 ? (
+          filteredEvents.map((event, index) => (
+            <div key={index} className="card">
+              <h2>{event.name}</h2>
+              <p><strong>Organized by:</strong> {event.ngoName}</p>
+              <p>{event.location}</p>
+              <p>{event.description}</p>
+              {event.volunteerLink && (
+                <p style={{ fontWeight: "bold" }}>
+                  <a
+                    href={event.volunteerLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Register here
+                  </a>
+                </p>
+              )}
+            {event.ngoId === userId && (
+<button
+  style={{
+    all: "unset", // Reset all styles
+    position: "absolute",  // Absolute position within the card container
+    top: "10px", // Adjust top position within the card
+    right: "10px", // Adjust right position within the card
+    width: "30px",  // Smaller size
+    height: "30px", // Same width and height for a perfect circle
+    borderRadius: "50%",
+    backgroundColor: "darkgreen",
+    color: "white",
+    fontSize: "18px", // Smaller "X"
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    cursor: "pointer",
+    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+  }}
+  onMouseEnter={(e) => e.target.style.backgroundColor = "darkgreen"}
+  onMouseLeave={(e) => e.target.style.backgroundColor = "darkgreen"}
+  onClick={() => handleDelete(event._id)}
+>
+  X
+</button>
 )}
-                
-                
-                
-                
-              </div>
-            ))
-          ) : (
-            <p className="no-results">No events found.</p>
-          )}
-        </div>
+              
+              
+              
+              
+            </div>
+          ))
+        ) : (
+          <p className="no-results">No events found.</p>
+        )}
       </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default EventList;

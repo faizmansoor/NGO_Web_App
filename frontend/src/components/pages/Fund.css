@@ -1,7 +1,7 @@
 /* General Page Styling */
 body {
     font-family: 'Arial', sans-serif;
-    background-image: url('https://img.freepik.com/premium-photo/abstract-liquid-watercolor-background-with-golden-lines_525068-1440.jpg');
+    background-image: url('https://files.123freevectors.com/wp-content/resized/111507-light-color-blurred-background-vector.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -115,7 +115,7 @@ button:active {
 .search-container input {
     width: 100%;
     padding: 10px;
-    border: 1.5px solid #ccc;
+    border: 1.5px solid #000000;
     border-radius: 8px;
     font-size: 16px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

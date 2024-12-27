@@ -17,18 +17,18 @@ body{
   .filter-select {
     padding: 10px;
     font-size: 16px;
-    border: 2px solid #ccc;
+    border: 2px solid #000000;
     border-radius: 8px;
     margin-top: 50px;
     height: 40px; /* Set a specific height for both elements */
   }
   
   .search-box {
-    width: 30%;
+    width: 50%;
   }
   
   .filter-select {
-    width: 10%;
+    width: 20%;
   }
   
   /* Add a nice font (Google Font for example) */

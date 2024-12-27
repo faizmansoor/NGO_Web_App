@@ -72,7 +72,7 @@
 /* SIGN UP PAGE General Page Styles */
 /* authPages.css */
 .signup-form {
-  max-width: 600px;
+  max-width: 550px;
   margin: 0 auto;
   padding: 2rem;
   background-color: #fff;
@@ -105,7 +105,7 @@
 .form-input {
   padding: 0.75rem;
   font-size: 1rem;
-  border: 1px solid #ddd;
+  border: 2px solid #000000;
   border-radius: 5px;
   margin-bottom: 1rem;
   box-sizing: border-box;
@@ -137,7 +137,7 @@ select.form-input {
 
 /* Background and general styling for the container */
 .background-region {
-  background-color: #f4f7f6;
+  background-image: url('https://files.123freevectors.com/wp-content/resized/111507-light-color-blurred-background-vector.jpg');
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -146,4 +146,10 @@ select.form-input {
 }
 .login-button{
   margin-top: 0.1%;
+}
+body {
+  background-image: url('https://files.123freevectors.com/wp-content/resized/111507-light-color-blurred-background-vector.jpg') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-attachment: fixed !important;
 }

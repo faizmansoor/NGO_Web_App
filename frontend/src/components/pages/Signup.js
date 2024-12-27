@@ -64,7 +64,7 @@ const SignupPage = () => {
         className="background-region"
         style={{
           backgroundImage:
-            "url('https://img.freepik.com/premium-photo/abstract-liquid-watercolor-background-with-golden-lines_525068-1440.jpg')",
+            "url('https://files.123freevectors.com/wp-content/resized/111507-light-color-blurred-background-vector.jpg')",
           backgroundPosition: "center",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
@@ -73,7 +73,7 @@ const SignupPage = () => {
       >
         <form onSubmit={handleSubmit} className="signup-form"
          style={{
-          backgroundColor: "#077b4775", // Apply background color
+          backgroundColor: "#ffffff", // Apply background color
           
         }}>
           <h1 className="signup-title">Sign Up</h1>

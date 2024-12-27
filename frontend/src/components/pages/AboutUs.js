@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '../Navbar';
+
 import './AboutUs.css'; // Import the CSS file for About Us styling
 const headingStyle = {
   color: 'white',

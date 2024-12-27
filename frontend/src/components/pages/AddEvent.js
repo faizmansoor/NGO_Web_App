@@ -220,7 +220,7 @@ return (
           placeholder="Search by location..."
           style={{
             height: "42px",
-            border: "1px solid #ccc",
+            border: "2px solid #000000",
              borderRradius: "4px",
              boxShadow: "none",
           }}

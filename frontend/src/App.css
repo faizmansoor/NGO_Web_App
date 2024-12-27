@@ -3,7 +3,8 @@ body {
   
   margin: 0;
   font-family: 'Arial', sans-serif;
- /* background-image: url('https://img.freepik.com/premium-photo/abstract-liquid-watercolor-background-with-golden-lines_525068-1440.jpg');*/
+  
+  background-image: url('https://files.123freevectors.com/wp-content/resized/111507-light-color-blurred-background-vector.jpg');
   background-position: center;
   background-size: cover;
   min-height: 100vh;
@@ -12,8 +13,8 @@ body {
   height:100%;
 }
 
-.AddEvent, .Fund, .Login, .NgoDir, .SignupPage {
-  background-image: url('https://img.freepik.com/premium-photo/abstract-liquid-watercolor-background-with-golden-lines_525068-1440.jpg');
+.AddEvent, .Fund, .Login, .NgoDir, .SignupPage, .Login {
+  background-image: url('https://files.123freevectors.com/wp-content/resized/111507-light-color-blurred-background-vector.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

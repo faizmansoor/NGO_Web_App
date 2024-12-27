@@ -93,10 +93,14 @@ const Fund = () => {
 
   return (
     <div className="fund-container">
+      
       {isAuthenticated && (
-        <button onClick={() => setShowForm(!showForm)}>
+        <div className = "form-btn">
+        <button onClick={() => setShowForm(!showForm)}
+        className="toggle-form-btn">
           {showForm ? "Close Form" : "Create a Fundraiser"}
         </button>
+        </div>
       )}
 
       {showForm && (

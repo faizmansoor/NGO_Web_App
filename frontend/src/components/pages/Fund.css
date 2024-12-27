@@ -161,6 +161,23 @@ button:active {
 .card a:hover {
     text-decoration: underline;
 }
+.form-btn {
+    margin-top: 3%;
+    display: flex;               /* Enable flexbox */
+    justify-content: center;     /* Center horizontally */
+    align-items: center;         /* Center vertically */
+    width: 100%;                 /* Ensure it takes the full width */
+    height: 100%;             /* Optional: Adjust if you want to control height */
+  }
+  
+  .toggle-form-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+
 
 /* Responsive Design */
 @media (max-width: 768px) {

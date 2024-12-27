@@ -56,10 +56,7 @@ const Login = () => {
             <form className="signup-form" onSubmit={handleSubmit}
              style={{
               backgroundColor: "#077b4775", // Apply background color
-              padding: "20px", // Add some padding for spacing
-              borderRadius: "10px", // Optionally, add border-radius for rounded corners
-              maxWidth: "400px", // Optionally, set a max width for the form
-              margin: "auto", // Center the form horizontally
+              
             }}>
               <h2>NGO Login</h2>
               {errorMessage && <p className="error-message">{errorMessage}</p>}

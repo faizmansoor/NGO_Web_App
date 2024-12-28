@@ -124,30 +124,30 @@ router.get("/", async (req, res) => {
 });
 
 // Update an NGO
-router.put("/:id", verifyAuthToken, async (req, res) => {
-  try {
-    const ngo = await NGO.findById(req.params.id);
+// router.put("/:id", verifyAuthToken, async (req, res) => {
+//   try {
+//     const ngo = await NGO.findById(req.params.id);
 
-    if (!ngo) {
-      return res.status(404).json({ message: "NGO not found" });
-    }
+//     if (!ngo) {
+//       return res.status(404).json({ message: "NGO not found" });
+//     }
 
-    // Check if the logged-in user is the creator of the NGO
-    if (ngo.createdBy.toString() !== req.user) {
-      return res
-        .status(403)
-        .json({ message: "Unauthorized: You can only edit your own NGOs" });
-    }
+//     // Check if the logged-in user is the creator of the NGO
+//     if (ngo.createdBy.toString() !== req.user) {
+//       return res
+//         .status(403)
+//         .json({ message: "Unauthorized: You can only edit your own NGOs" });
+//     }
 
-    const updatedNgo = await NGO.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-    res.status(200).json(updatedNgo);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Error updating NGO", error: err.message });
-  }
-});
+//     const updatedNgo = await NGO.findByIdAndUpdate(req.params.id, req.body, {
+//       new: true,
+//     });
+//     res.status(200).json(updatedNgo);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ message: "Error updating NGO", error: err.message });
+//   }
+// });
 
 // Delete an NGO
 router.delete("/:id", verifyAuthToken, async (req, res) => {

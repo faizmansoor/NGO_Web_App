@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import "./VoiceBot.css";
-import { useNavigate } from "react-router-dom"; // React Router's navigate function
+import { useNavigate } from "react-router-dom";
 
 const VoiceBot = () => {
   const [isVoiceBotEnabled, setIsVoiceBotEnabled] = useState(false);
   const [recognition, setRecognition] = useState(null);
   const navigate = useNavigate();
 
-  // Define the tabs and their corresponding links
-  const tabs = [
+  // Use useMemo to ensure the tabs array reference remains the same across renders
+  const tabs = useMemo(() => [
     { name: "NgoVerse", link: "/AboutUs" },
     { name: "Fundraisers", link: "/Fund" },
     { name: "NGO Directory", link: "/NgoDir" },
     { name: "NGO Events", link: "/AddEvent" },
-    { name: "Sign In", link: "/SignupPage" },
-  ];
+    { name: "Sign In", link: "/login" },
+  ], []);
 
   useEffect(() => {
     const SpeechRecognition =

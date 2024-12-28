@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./authPages.css";
-import Navbar from "../Navbar";
+
 import axios from "axios";
 
 const SignupPage = () => {
@@ -59,7 +59,7 @@ const SignupPage = () => {
 
   return (
     <div>
-      <Navbar />
+      
       <div
         className="background-region"
         style={{

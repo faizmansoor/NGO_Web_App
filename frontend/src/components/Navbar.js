@@ -5,12 +5,13 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <div className="navbar-logo">
-        <Link to="/" className="navbar-title">
+      
+      <ul className="navbar-links">
+      <li><Link to="/" className="navbar-title">
           NgoVerse
         </Link>
-      </div>
-      <ul className="navbar-links">
+          
+        </li>
         <li>
           <Link to="/fund">Fundraisers</Link>
         </li>

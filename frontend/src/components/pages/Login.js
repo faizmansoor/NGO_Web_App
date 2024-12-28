@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./authPages.css";
-import Navbar from "../Navbar"; // Import the Navbar component
+// Import the Navbar component
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -37,7 +37,7 @@ const Login = () => {
 
   return (
     <div>
-      <Navbar /> {/* Add the Navbar component here */}
+      
       <div
         className="background-region"
         style={{

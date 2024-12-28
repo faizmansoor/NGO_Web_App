@@ -1,11 +1,5 @@
-video {
-    object-fit:cover;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: -1;
-  }
-body{
+/* General styles */
+body {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
@@ -13,161 +7,79 @@ body{
   overflow: hidden;
 }
 
-.home-container {
-  position: relative;
+.main-container {
   width: 100%;
-  height: 100vh;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  overflow: auto;
+  margin-top: -20px;
 }
 
+/* Section 1: Video */
+.video-section {
+  position: sticky;
+  width: 100%;
+  height: 600px;
+  background-color: #000;
+}
 
-.navbar {
+.video-section video {
+  object-fit: cover;
+  width: 100%;
+  height: 600px;
+  position: relative;
+  z-index: -1;
+}
+
+.overlay {
   position: absolute;
   top: 0;
+  left: 0;
   width: 100%;
+  height: 600px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 10px 20px;
-  background: rgba(0, 0, 0, 1);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-.navbar .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #ffffff;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 15px;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links li {
-  display: inline;
-}
-
-.nav-links a {
+.ngoverse-title {
   color: white;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.3s;
+  font-size: 4rem;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
 }
 
-.nav-links a:hover {
-  color: #ffd700;
+/* Sections styling */
+.about-us-section,
+.vision-section,
+.mission-section, .contact-section {
+  padding: 75px 30px; /* Increased padding by 50% */
+  text-align: center;
+  font-family: 'Georgia', 'Times New Roman', Times, serif; /* Better font for sections */
+  font-size: 1.2rem; /* Slightly larger font size */
+  line-height: 1.8; /* Improve readability */
 }
 
-.about-us-content {
-  max-width: 800px;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: 5%;
+.about-us-section {
+  background-color: #f4f4f4;
 }
 
-.about-us-content h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
+.vision-section {
+  background-color: #313131;
 }
 
-.about-us-content p {
-  font-size: 1.2rem;
-  line-height: 1.5;
+.mission-section {
+  background-color: #f4f4f4;
 }
 
-.about-us-content section {
-  margin-top: 30px;
+/* Section 5: Contact Info */
+.contact-section {
+  background-color: #313131;
 }
 
-.about-us-content h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  color:white;
+.vision-section, .contact-section {
+  
+  color: #f4f4f4;
 }
 
-
-.about-us-content p {
-  font-size: 1rem;
-  line-height: 1.5;
+.vision-section h1, .contact-section h1{
+  color: #f4f4f4;
 }
-/* For screens 1024px or smaller (tablets and landscape mobile) */
-@media (max-width: 1024px) {
-    .navbar {
-      padding: 10px 15px; /* Slightly reduce the navbar padding */
-    }
-  
-    .navbar .logo {
-      font-size: 1.25rem; /* Reduce logo size */
-    }
-  
-    .nav-links {
-      gap: 10px; /* Reduce the space between links */
-    }
-  
-    .about-us-content {
-      max-width: 90%; /* Allow more width for the content */
-      padding: 15px; /* Adjust padding for better spacing */
-    }
-  
-    .about-us-content h1 {
-      font-size: 2.5rem; /* Reduce heading size */
-    }
-  
-    .about-us-content h2 {
-      font-size: 1.8rem; /* Reduce secondary heading size */
-    }
-  
-    .about-us-content p {
-      font-size: 1.1rem; /* Slightly reduce paragraph text size */
-    }
-  }
-  
-  /* For screens 768px or smaller (mobile devices) */
-  @media (max-width: 768px) {
-    body, html {
-      overflow: auto; /* Enable scrolling on small screens */
-    }
-  
-    .navbar {
-      padding: 10px 10px; /* Further reduce navbar padding */
-      flex-direction: column; /* Stack the navbar items vertically */
-      align-items: flex-start; /* Align the items to the left */
-    }
-  
-    .navbar .logo {
-      font-size: 1.2rem; /* Further reduce logo size */
-      margin-bottom: 10px; /* Add margin to the bottom */
-    }
-  
-    .nav-links {
-      flex-direction: column; /* Stack the links vertically */
-      gap: 10px; /* Reduce the gap between links */
-    }
-  
-    .about-us-content {
-      max-width: 95%; /* Allow more width on smaller screens */
-      padding: 10px; /* Reduce padding */
-    }
-  
-    .about-us-content h1 {
-      font-size: 2rem; /* Further reduce heading size */
-    }
-  
-    .about-us-content h2 {
-      font-size: 1.6rem; /* Reduce secondary heading size */
-    }
-  
-    .about-us-content p {
-      font-size: 1rem; /* Adjust text size for readability */
-    }
-  }
-  

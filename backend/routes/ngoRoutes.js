@@ -18,7 +18,7 @@ router.post("/register", async (req, res) => {
     contact_number,
     address,
     ngo_type,
-    website_link,
+    websiteLink,
     picUrl, // This will now be a URL from FreeImage
   } = req.body;
   console.log(req.body);
@@ -39,8 +39,8 @@ router.post("/register", async (req, res) => {
       password: hashedPassword,
       contactNo: contact_number,
       address,
-      ngo_type,
-      website_link,
+      ngoType: ngo_type, // Match the schema
+      websiteLink,
       picUrl, // Save the URL directly
     });
 

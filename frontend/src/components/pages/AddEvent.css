@@ -40,7 +40,6 @@ form {
     border: 2px solid black;  /* Added black border */
 }
 
-
 h2 {
     text-align: center;
     color: #333;
@@ -121,6 +120,8 @@ button:active {
     padding: 20px;
     box-sizing: border-box;
 }
+
+
 
 /* Card Styling */
 .cards-container {

@@ -163,7 +163,8 @@ const Fund = () => {
       )}
 
       <div className="search-container">
-      <span className="search-icon">🔍</span>
+      <span className="search-icon"
+      >🔍</span>
       <input
   type="text"
   placeholder="Search fundraisers..."

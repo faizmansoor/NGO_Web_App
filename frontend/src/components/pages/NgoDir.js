@@ -38,7 +38,11 @@ const NgoDir = () => {
   return (
     <div className="ngodir-container">
       <div className="filter-container">
-        <span className="search-icon">🔍</span>
+        <span className="search-icon"
+        style={{
+          
+          marginTop: "52px",
+        }}>🔍</span>
         <input
           type="text"
           placeholder="Search by name..."
@@ -62,7 +66,7 @@ const NgoDir = () => {
           type="text"
           placeholder="Search by location..."
           style={{
-            height: "42px",
+            height: "41px",
             marginTop: "50px",
           }}
           value={locationFilter}

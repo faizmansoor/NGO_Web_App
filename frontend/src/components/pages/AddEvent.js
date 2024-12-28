@@ -215,21 +215,22 @@ return (
           }}
           className="search-box"
         />
+        
         <input
-          type="text"
-          placeholder="Search by location..."
-          style={{
-            height: "42px",
-            border: "2px solid #000000",
-             borderRradius: "4px",
-             boxShadow: "none",
-          }}
-          value={locationFilter}
-          onChange={(e) => setLocationFilter(e.target.value)}
-          onFocus={(e) => (e.target.style.border = "2px solid blue")}
-          onBlur={(e) => (e.target.style.border = "1px solid #ccc")}
-          className="filter-box"
-        />
+  type="text"
+  placeholder="Search by location..."
+  className="filter-box search-loc"
+  value={locationFilter}
+  onChange={(e) => setLocationFilter(e.target.value)}
+  onFocus={(e) => (e.target.style.border = "2px solid blue")}
+  onBlur={(e) => (e.target.style.border = "1px solid #ccc")}
+  style={{
+    marginTop: "48px", // This moves the box down by 10px
+    height: "42px",
+    border: "2px solid black",
+  }}
+/>
+
       </div>
 
       <div className="cards-container">

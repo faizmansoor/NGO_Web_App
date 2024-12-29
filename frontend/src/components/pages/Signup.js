@@ -10,8 +10,8 @@ const SignupPage = () => {
     password: "",
     contact_number: "",
     address: "",
-    ngo_type: "",
-    website_link: "",
+    ngoType: "",
+    websiteLink: "",
     picUrl: "", // Changed to store image URL instead of file
   });
 
@@ -22,6 +22,7 @@ const SignupPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Sending form data:", formData);
 
     try {
       const response = await axios.post(
@@ -43,8 +44,8 @@ const SignupPage = () => {
         password: "",
         contact_number: "",
         address: "",
-        ngo_type: "",
-        website_link: "",
+        ngoType: "",           // Fixed
+        websiteLink: "",       // Fixed
         picUrl: "",
       });
       // Redirect or display success message
@@ -166,11 +167,11 @@ const SignupPage = () => {
           </div>
 
           <div className="form-group" style={{ marginRight: "60px" }}>
-            <label htmlFor="ngo_type">NGO Type</label>
+            <label htmlFor="ngoType">NGO Type</label>
             <select
-              id="ngo_type"
-              name="ngo_type"
-              value={formData.ngo_type}
+              id="ngoType"
+              name="ngoType"
+              value={formData.ngoType}
               onChange={handleChange}
               className="form-input"
               style={{
@@ -189,12 +190,12 @@ const SignupPage = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="website_link">Website Link</label>
+            <label htmlFor="websiteLink">Website Link</label>
             <input
               type="url"
-              id="website_link"
-              name="website_link"
-              value={formData.website_link}
+              id="websiteLink"
+              name="websiteLink"
+              value={formData.websiteLink}
               onChange={handleChange}
               className="form-input"
               style={{

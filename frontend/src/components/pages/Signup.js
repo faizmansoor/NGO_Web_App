@@ -22,6 +22,7 @@ const SignupPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Sending form data:", formData);
 
     try {
       const response = await axios.post(
@@ -43,8 +44,8 @@ const SignupPage = () => {
         password: "",
         contact_number: "",
         address: "",
-        ngoType: "",
-        websiteLink: "",
+        ngoType: "",           // Fixed
+        websiteLink: "",       // Fixed
         picUrl: "",
       });
       // Redirect or display success message

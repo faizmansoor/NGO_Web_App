@@ -33,18 +33,25 @@ router.post("/register", async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    ngo = new NGO({
+    const ngoData = {
       name,
       email,
       password: hashedPassword,
       contactNo: contact_number,
       address,
-      ngoType: ngoType, // Match the schema
-      websiteLink,
-      picUrl, // Save the URL directly
-    });
+      ngoType: ngoType,         // Explicitly set
+      websiteLink: websiteLink, // Explicitly set
+      picUrl
+    };
 
-    await ngo.save();
+    console.log("About to save NGO data:", ngoData);
+    
+    ngo = new NGO(ngoData);
+    console.log("Created NGO object:", ngo);
+    
+    const savedNGO = await ngo.save();
+    console.log("Saved NGO:", savedNGO);
+
 
     // Create a payload for the JWT
     const payload = { ngoId: ngo._id };

@@ -18,7 +18,6 @@ const NGOSchema = new mongoose.Schema({
     address: { type: String },
     ngoType: {
         type: String,
-        enum: ['Health', 'Education', 'Environment', 'Community', 'Others'],
     },
     websiteLink: {
         type: String,

@@ -13,7 +13,7 @@ const EventList = () => {
     
   });
 
-  const [cards, setCards] = useState([]);
+  
   const [showForm, setShowForm] = useState(false);
   const [events, setEvents] = useState([]);
   const [search, setSearch] = useState("");
@@ -65,23 +65,38 @@ const EventList = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    const dataToSend = { ...formData };
-  
+    
     try {
+      // Make sure all required fields are included
+      const dataToSend = {
+        name: formData.event,
+        location: formData.location,
+        description: formData.description,
+        participants: formData.participants,
+        eligibility: formData.eligibility,
+        volunteerLink: formData.volunteerLink,
+        // Add the NGO information from the authenticated user
+        ngoId: userId,  // This comes from your authentication check
+      };
+      
+      
+      
+      console.log("Submitting data:", dataToSend); // Log the data being sent
+      
       const response = await axios.post(
         "http://localhost:5000/api/events",
         dataToSend,
         {
           headers: {
-            "Content-Type": "application/json", // Use application/json
+            "Content-Type": "application/json",
           },
           withCredentials: true,
         }
       );
-  
+    
       if (response.data.success) {
-        setCards([...cards, formData]);
+        setEvents([...events, response.data.data]);
+        
         setFormData({
           event: "",
           location: "",
@@ -90,13 +105,16 @@ const EventList = () => {
           eligibility: "",
           volunteerLink: "",
         });
+        
         setShowForm(false);
+        setError(""); // Clear any previous errors
         console.log("Event created successfully.");
       } else {
-        setError("Failed to create event.");
+        setError("Failed to create event: " + (response.data.message || "Unknown error"));
       }
     } catch (err) {
-      setError("Error submitting event: " + err.message);
+      console.error("Error details:", err.response?.data || err.message);
+      setError("Error submitting event: " + (err.response?.data?.message || err.message));
     }
   };
   const handleDelete = async (eventId) => {
@@ -146,7 +164,7 @@ return (
           value={formData.event}
           onChange={handleChange}
           placeholder="Enter event name"
-          required
+          //required
         />
         <label htmlFor="participants">Number of Participants</label>
         <input
@@ -157,7 +175,7 @@ return (
           onChange={handleChange}
           placeholder="Enter number of participants"
           min="0"
-          required
+          //required
         />
         <label htmlFor="eligibility">Eligibility Conditions</label>
         <textarea
@@ -166,7 +184,7 @@ return (
           value={formData.eligibility}
           onChange={handleChange}
           placeholder="Enter eligibility conditions"
-          required
+          //required
         />
         <label htmlFor="location">Event Location</label>
         <input
@@ -176,7 +194,7 @@ return (
           value={formData.location}
           onChange={handleChange}
           placeholder="Enter event location"
-          required
+          //required
         />
         <label htmlFor="description">Event Description</label>
         <textarea
@@ -185,7 +203,7 @@ return (
           value={formData.description}
           onChange={handleChange}
           placeholder="Enter event description"
-          required
+          //required
         />
         <label htmlFor="volunteerLink">Volunteer Registration Link</label>
         <input
@@ -195,7 +213,7 @@ return (
           value={formData.volunteerLink}
           onChange={handleChange}
           placeholder="Enter volunteer registration link"
-          required
+          //required
         />
         
         <button type="submit">Submit</button>
@@ -276,7 +294,7 @@ return (
   onMouseLeave={(e) => e.target.style.backgroundColor = "darkgreen"}
   onClick={() => handleDelete(event._id)}
 >
-  X
+  
 </button>
 )}
               

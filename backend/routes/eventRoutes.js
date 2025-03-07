@@ -8,6 +8,7 @@ const router = express.Router();
 
 // Create a new event
 router.post("/", verifyToken, async (req, res) => {
+  
   try {
     console.log("Request Body:", req.body);
     const { event, participants, eligibility, location, description, volunteerLink } = req.body;

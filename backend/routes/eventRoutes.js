@@ -17,8 +17,9 @@ router.post("/", verifyToken, async (req, res) => {
     }
 
     // Extract `ngoId` (userId) from the authenticated user's cookie
-    const ngoId = req.user?.userId;
-    console.log(ngoId);
+    
+    const ngoId = req.user?.ngoId;
+    console.log("ngoId is: ", ngoId);
 
     // Fetch `ngoName` from the database using `ngoId`
     const ngo = await NGO.findById(ngoId).select("name");
@@ -26,7 +27,7 @@ router.post("/", verifyToken, async (req, res) => {
       return res.status(404).json({ message: "NGO not found." });
     }
     const ngoName = ngo.name;
-    console.log(ngoName);
+    console.log("ngoName is ", ngoName);
 
     // Create new event without image
     const newEvent = new Event({
@@ -69,7 +70,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Assuming this is in your eventRoutes.js file
+
 router.get("/user", verifyToken, async (req, res) => {
   try {
     // Get the logged-in user's ngoId from the token
@@ -134,6 +135,7 @@ router.get("/ngo/:ngoId", async (req, res) => {
 // });
 
 // Delete an event
+
 router.delete("/:id", verifyToken, async (req, res) => {
   try {
     // Get the event by ID

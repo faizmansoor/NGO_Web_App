@@ -12,7 +12,7 @@ const SignupPage = () => {
     address: "",
     ngoType: "",
     websiteLink: "",
-    picUrl: "", // Changed to store image URL instead of file
+    picUrl: "",
   });
 
   const handleChange = (e) => {
@@ -27,10 +27,10 @@ const SignupPage = () => {
     try {
       const response = await axios.post(
         "http://localhost:5000/api/ngos/register",
-        formData, // Now sending regular JSON instead of FormData
+        formData,
         {
           headers: {
-            "Content-Type": "application/json", // Changed to JSON content type
+            "Content-Type": "application/json",
           },
           withCredentials: true,
         }
@@ -44,17 +44,15 @@ const SignupPage = () => {
         password: "",
         contact_number: "",
         address: "",
-        ngoType: "",           // Fixed
-        websiteLink: "",       // Fixed
+        ngoType: "",
+        websiteLink: "",
         picUrl: "",
       });
-      // Redirect or display success message
     } catch (error) {
       console.error(
         "Error registering NGO:",
         error.response?.data || error.message
       );
-      // Handle errors here
     }
   };
 
@@ -63,8 +61,6 @@ const SignupPage = () => {
       <div
         className="background-region"
         style={{
-          backgroundImage:
-            "url('https://files.123freevectors.com/wp-content/resized/111507-light-color-blurred-background-vector.jpg')",
           backgroundPosition: "center",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
@@ -75,7 +71,7 @@ const SignupPage = () => {
           onSubmit={handleSubmit}
           className="signup-form"
           style={{
-            backgroundColor: "#ffffff", // Apply background color
+            backgroundColor: "#ffffff",
           }}
         >
           <h1 className="signup-title">Sign Up</h1>
@@ -91,8 +87,8 @@ const SignupPage = () => {
               required
               className="form-input"
               style={{
-                width: "100%", // Ensure all fields are the same width
-                height: "40px", // Increase height slightly
+                width: "100%",
+                height: "40px",
                 padding: "10px",
               }}
             />
@@ -109,8 +105,8 @@ const SignupPage = () => {
               required
               className="form-input"
               style={{
-                width: "100%", // Same width
-                height: "40px", // Same height as the others
+                width: "100%",
+                height: "40px",
                 padding: "10px",
               }}
             />
@@ -160,14 +156,14 @@ const SignupPage = () => {
               onChange={handleChange}
               className="form-input"
               style={{
-                width: "100%",
-                height: "60px", // Slightly increased height for textarea
+                width: "223px",
+                height: "10px",
                 padding: "10px",
               }}
             />
           </div>
 
-          <div className="form-group" style={{ marginRight: "60px" }}>
+          <div className="form-group">
             <label htmlFor="ngoType">NGO Type</label>
             <select
               id="ngoType"
@@ -176,7 +172,8 @@ const SignupPage = () => {
               onChange={handleChange}
               className="form-input"
               style={{
-                width: "100%",
+                width: "223px",
+
                 height: "40px",
                 padding: "10px",
               }}

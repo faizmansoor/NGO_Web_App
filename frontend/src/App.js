@@ -16,9 +16,7 @@ const App = () => {
   return (
     <Router>
       <div className="app">
-        
-        <Navbar /> {/* Navbar will now be present on all pages */}
-        
+        <Navbar />
         <Routes>
           <Route path="/" element={<AboutUs />} />
           <Route path="/NgoDir" element={<NgoDir />} />
@@ -27,7 +25,7 @@ const App = () => {
           <Route path="/fund" element={<Fund />} />
           <Route path="/addevent" element={<AddEvent />} />
         </Routes>
-        <VoiceBot  />
+        <VoiceBot />
       </div>
     </Router>
   );

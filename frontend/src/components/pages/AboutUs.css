@@ -1,173 +1,396 @@
-/* General styles */
-body {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #4361ee;
+  --secondary-color: #3f37c9;
+  --accent-color: #4cc9f0;
+  --dark-color: #1a1a2e;
+  --light-color: #f8f9fa;
+  --text-dark: #212529;
+  --text-light: #f8f9fa;
+  --text-muted: #6c757d;
+  --transition-speed: 0.3s;
+  --border-radius: 8px;
+}
+
+* {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif; /* Modern font for overall text */
-  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  overflow-x: hidden;
+  background-color: var(--light-color);
+}
+
+.homepage-container {
+  width: 100%;
   overflow: hidden;
 }
 
-/* Main container */
-.main-container {
-  width: 100%;
-  overflow: auto;
-  margin-top: -20px;
+/* Animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Section 1: Video */
-.video-section {
-  position: sticky;
-  width: 100%;
-  height: 600px;
-  background-color: #000;
+.animate-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.video-section video {
-  object-fit: cover;
-  width: 100%;
-  height: 600px;
+.animate-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero Section */
+.hero-section {
   position: relative;
-  z-index: -1;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--text-light);
+  overflow: hidden;
 }
 
-.overlay {
+.hero-section::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 600px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+  opacity: 0.7;
 }
 
-.ngoverse-title {
-  color: white;
-  font-size: 4rem;
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
-  font-family: 'Montserrat', sans-serif; /* Modern font for title */
-}
-
-/* Sections styling */
-.about-us-section,
-.vision-section,
-.mission-section, 
-.contact-section {
-  padding: 100px 40px; /* Increased padding for more space */
+.hero-content {
   text-align: center;
-  font-family: 'Georgia', 'Times New Roman', Times, serif; /* Serif font for better section look */
-  font-size: 1.25rem; /* Slightly larger font size */
-  line-height: 1.8; /* Improved readability */
-}
-
-/* Section 1: About Us */
-.about-us-section {
-  background-color: #f4f4f4;
-  margin-top: 50px; /* Increased margin to create space above */
-}
-
-.about-us-section h1 {
-  font-size: 2.5rem; /* Larger heading */
-  margin-bottom: 20px; /* Added margin below the title */
-  font-family: 'Montserrat', sans-serif; /* Stronger font for titles */
-  color: #333; /* Darker color for titles */
-  text-transform: uppercase; /* Capitalize the title */
-}
-
-/* Section 2: Vision */
-.vision-section {
-  background-color: #313131;
-  color: #ffffff; /* Ensure text color is white for better visibility */
-  margin-top: 50px;
-}
-
-.vision-section h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  font-family: 'Montserrat', sans-serif;
-  color: #ffffff; /* White color for the title */
-  text-transform: uppercase;
-}
-
-.vision-section p {
-  color: #dddddd; /* Lighten the paragraph text for better contrast */
-}
-
-/* Section 3: Mission */
-.mission-section {
-  background-color: #f4f4f4;
-  margin-top: 50px;
-}
-
-.mission-section h1 {
-  font-size: 2.5rem; /* Larger heading */
-  margin-bottom: 20px; /* Added margin below the title */
-  font-family: 'Montserrat', sans-serif; /* Stronger font for titles */
-  color: #333; /* Dark color for better readability */
-  text-transform: uppercase; /* Capitalize the title */
-}
-
-/* Section 4: Contact Info */
-.contact-section {
-  background-color: #313131;
-  color: #ffffff; /* Ensure text color is white for better visibility */
-  margin-top: 50px;
-}
-
-.contact-section h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  font-family: 'Montserrat', sans-serif;
-  color: #ffffff; /* White color for the title */
-  text-transform: uppercase;
-}
-
-.contact-section p {
-  color: #dddddd; /* Lighten the paragraph text for better contrast */
-  font-size: 1.1rem;
-}
-
-/* Specific Section Styling */
-.vision-section p,
-.mission-section p,
-.about-us-section p,
-.contact-section p {
-  max-width: 800px;
-  margin: 0 auto;
+  z-index: 1;
+  max-width: 900px;
   padding: 0 20px;
-  font-size: 1.1rem; /* Slightly smaller font for paragraphs */
-  color: #333; /* Darker text for readability (fixes the issue for general text) */
 }
 
-/* Section background styles */
-.vision-section, .contact-section {
-  color: #f4f4f4;
-  padding-bottom: 80px; /* Added bottom padding for extra space */
+.hero-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: white;
+  letter-spacing: -0.02em;
+  animation: fadeUp 0.8s forwards;
 }
 
-.about-us-section,
-.mission-section {
-  background-color: #f4f4f4;
+.hero-subtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s forwards;
 }
 
-/* Footer styling for extra contrast (if needed in future) */
-footer {
-  background-color: #313131;
-  padding: 50px;
+.hero-buttons {
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s forwards;
+}
+
+.primary-button, .secondary-button {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  border: none;
+  margin: 0 0.5rem;
+}
+
+.primary-button {
+  background-color: var(--accent-color);
+  color: var(--dark-color);
+}
+
+.primary-button:hover {
+  background-color: #5dd5f7;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(76, 201, 240, 0.3);
+}
+
+.secondary-button {
+  background-color: transparent;
+  color: var(--light-color);
+  border: 2px solid var(--light-color);
+}
+
+.secondary-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Common Section Styles */
+.section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+}
+
+.section-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 600;
   text-align: center;
-  color: #fff;
+  margin-bottom: 1rem;
+  color: var(--dark-color);
 }
-.contact-container {
+
+.section-title.light {
+  color: var(--light-color);
+}
+
+.divider {
+  width: 80px;
+  height: 4px;
+  background-color: var(--primary-color);
+  margin: 0 auto 2.5rem;
+  border-radius: 2px;
+}
+
+.divider.light {
+  background-color: var(--light-color);
+}
+
+.section-text {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  text-align: center;
+  font-size: 1.125rem;
+  color: var(--text-dark);
+}
+
+/* About Section */
+.about-section {
+  background-color: var(--light-color);
+  padding: 2rem 0;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark-color);
+}
+
+.feature-card p {
+  color: var(--text-muted);
+}
+
+/* Vision Section */
+.vision-section {
+  background: linear-gradient(to right, var(--dark-color), var(--secondary-color));
+  color: var(--text-light);
+  position: relative;
+}
+
+.vision-section .section-text {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.vision-stats {
   display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.stat-number {
+  display: block;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--accent-color);
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Mission Section */
+.mission-section {
+  background-color: var(--light-color);
+  padding: 2rem 0;
+}
+
+.cta-container {
+  text-align: center;
+  background-color: white;
+  padding: 3rem 2rem;
+  border-radius: var(--border-radius);
+  max-width: 700px;
+  margin: 0 auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.cta-container h3 {
+  color: var(--dark-color);
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+
+.homepage-footer {
+  background-color: var(--dark-color);
+  color: var(--text-light);
+  padding: 4rem 2rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: flex-start;
-  padding: 20px;
-  gap: 20px;
 }
 
-.contact-details {
-  flex: 1; /* Left side takes up 50% of the container */
+.footer-brand {
+  margin-bottom: 2rem;
 }
 
+.footer-brand h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
 
+.footer-brand p {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.link-group h4 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--light-color);
+}
+
+.link-group ul {
+  list-style: none;
+}
+
+.link-group ul li {
+  margin-bottom: 0.5rem;
+}
+
+.link-group ul li a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition-speed);
+  font-size: 0.875rem;
+}
+
+.link-group ul li a:hover {
+  color: var(--accent-color);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 3.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+  }
+  
+  .footer-links {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .section-content {
+    padding: 4rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .primary-button, .secondary-button {
+    margin: 0;
+  }
+  
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}

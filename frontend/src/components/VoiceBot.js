@@ -7,14 +7,16 @@ const VoiceBot = () => {
   const [recognition, setRecognition] = useState(null);
   const navigate = useNavigate();
 
-  // Use useMemo to ensure the tabs array reference remains the same across renders
-  const tabs = useMemo(() => [
-    { name: "NgoVerse", link: "/AboutUs" },
-    { name: "Fundraisers", link: "/Fund" },
-    { name: "NGO Directory", link: "/NgoDir" },
-    { name: "NGO Events", link: "/AddEvent" },
-    { name: "Sign In", link: "/login" },
-  ], []);
+  const tabs = useMemo(
+    () => [
+      { name: "NgoVerse", link: "/AboutUs" },
+      { name: "Fundraisers", link: "/Fund" },
+      { name: "NGO Directory", link: "/NgoDir" },
+      { name: "NGO Events", link: "/AddEvent" },
+      { name: "Sign In", link: "/login" },
+    ],
+    []
+  );
 
   useEffect(() => {
     const SpeechRecognition =
@@ -31,7 +33,8 @@ const VoiceBot = () => {
     recognitionInstance.lang = "en-US";
 
     recognitionInstance.onresult = (event) => {
-      const transcript = event.results[event.results.length - 1][0].transcript.trim();
+      const transcript =
+        event.results[event.results.length - 1][0].transcript.trim();
       console.log("Recognized speech:", transcript);
 
       // Find the matching tab
@@ -67,7 +70,6 @@ const VoiceBot = () => {
 
   return (
     <div className="voicebot-container">
-      {/* Toggle VoiceBot Button */}
       <button
         onClick={toggleVoiceBot}
         className="voicebot-toggle-button"

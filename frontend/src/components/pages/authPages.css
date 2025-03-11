@@ -2,8 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem; /* Adds space between buttons */
-    padding-top: 0%; /* Reduced padding from the login form */
+    gap: 1rem; 
+    padding-top: 0%; 
     width: 100%;
   }
   
@@ -39,30 +39,30 @@
   /* For screens 1024px or smaller (tablets and landscape mobile) */
 @media (max-width: 1024px) {
     .auth-buttons-container {
-      gap: 1rem; /* Space between buttons remains the same */
-      padding-top: 1rem; /* Adds a bit of space at the top for better visual balance */
+      gap: 1rem; 
+      padding-top: 1rem; 
     }
   
     .signup-button,
     .get-started-button {
-      padding: 0.8rem 1.2rem;  /* Slightly reduce padding for smaller screens */
-      font-size: 0.9rem;  /* Reduce button font size */
+      padding: 0.8rem 1.2rem;  
+      font-size: 0.9rem;  
     }
   }
   
   /* For screens 768px or smaller (mobile devices) */
   @media (max-width: 768px) {
     .auth-buttons-container {
-      flex-direction: column;  /* Stack buttons vertically on smaller screens */
-      gap: 1.5rem; /* Increase space between buttons when stacked */
-      padding-top: 1rem;  /* Adds space at the top */
+      flex-direction: column;  
+      gap: 1.5rem; 
+      padding-top: 1rem;  
     }
   
     .signup-button,
     .get-started-button {
-      width: 100%;  /* Make buttons fill the full width on small screens */
-      padding: 1rem;  /* Adjust padding to make buttons easier to click */
-      font-size: 1rem;  /* Keep the font size readable */
+      width: 100%;  
+      padding: 1rem;  
+      font-size: 1rem;  
     }
   }
   
@@ -70,7 +70,7 @@
 
 
 /* SIGN UP PAGE General Page Styles */
-/* authPages.css */
+
 .signup-form {
   max-width: 550px;
   margin: 0 auto;
@@ -135,9 +135,9 @@ select.form-input {
   background-color: #45a049;
 }
 
-/* Background and general styling for the container */
+
 .background-region {
-  background-image: url('https://files.123freevectors.com/wp-content/resized/111507-light-color-blurred-background-vector.jpg');
+  
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -148,7 +148,7 @@ select.form-input {
   margin-top: 0.1%;
 }
 body {
-  background-image: url('https://files.123freevectors.com/wp-content/resized/111507-light-color-blurred-background-vector.jpg') !important;
+  background-color: #E7E7E7;
   background-size: cover !important;
   background-position: center !important;
   background-attachment: fixed !important;

@@ -4,7 +4,7 @@ body {
   margin: 0;
   font-family: 'Arial', sans-serif;
   
-  background-image: url('https://files.123freevectors.com/wp-content/resized/111507-light-color-blurred-background-vector.jpg');
+  
   background-position: center;
   background-size: cover;
   min-height: 100vh;
@@ -14,7 +14,7 @@ body {
 }
 
 .AddEvent, .Fund, .Login, .NgoDir, .SignupPage, .Login {
-  background-image: url('https://files.123freevectors.com/wp-content/resized/111507-light-color-blurred-background-vector.jpg');
+  
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -23,9 +23,5 @@ body {
   height:100vh;
 }
 
-
-/* VoiceBot button styling */
-/* VoiceBot button styling */
-/* VoiceBot button styling */
 
 

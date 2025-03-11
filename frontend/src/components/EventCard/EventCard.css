@@ -1,4 +1,4 @@
-/* Add card-specific styles here */
+
 .event-card {
   background: #077b4775;
   border-radius: 12px;
@@ -6,7 +6,7 @@
   padding: 20px;
   text-align: left;
   width: 100%;
-  box-sizing: border-box; /* Prevents overflow */
+  box-sizing: border-box; 
 }
 
 .event-card img {
@@ -20,7 +20,7 @@
 .cards-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Three cards per row */
-  gap: 30px; /* Increased gap between cards */
+  gap: 30px; 
   padding: 20px;
   box-sizing: border-box;
 }

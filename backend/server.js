@@ -34,13 +34,13 @@ app.use("/api/ngos", ngoRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/fundraisers", fundraiserRoutes);
 
-// Sample route to test the server
+
 app.get("/", (req, res) => {
   res.send("Server is running...");
 });
 
 app.get('/check-auth', (req, res) => {
-  console.log(req.cookies); // Check if cookies are being parsed
+  console.log(req.cookies); 
 
   const token = req.cookies.authToken;  // The cookie is automatically parsed by cookie-parser middleware
 

@@ -35,7 +35,9 @@ const Fund = () => {
 
     const fetchFundraisers = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/fundraisers");
+        const response = await axios.get(
+          "http://localhost:5000/api/fundraisers"
+        );
 
         if (response.data.success) {
           setFundraisers(response.data.data);
@@ -54,11 +56,11 @@ const Fund = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData)
-    
+    console.log(formData);
+
     try {
       const response = await axios.post(
         "http://localhost:5000/api/fundraisers",
@@ -94,85 +96,83 @@ const Fund = () => {
 
   return (
     <div className="fund-container">
-      
       {isAuthenticated && (
-        <div className = "form-btn">
-        <button onClick={() => setShowForm(!showForm)}
-        style={{
-          height: "55px",
-          marginTop: "30px", // Adjust the height as needed
-        }}
-        className="toggle-form-btn">
-          {showForm ? "Close Form" : "Create a Fundraiser"}
-        </button>
+        <div className="form-btn">
+          <button
+            onClick={() => setShowForm(!showForm)}
+            style={{
+              height: "55px",
+              marginTop: "30px",
+            }}
+            className="toggle-form-btn"
+          >
+            {showForm ? "Close Form" : "Create a Fundraiser"}
+          </button>
         </div>
       )}
 
       {showForm && (
         <div className="magic-form">
-        <form onSubmit={handleSubmit}>
-          
-          <h2>Fundraiser Registration</h2>
+          <form onSubmit={handleSubmit}>
+            <h2>Fundraiser Registration</h2>
 
-          <label htmlFor="name">Fundraiser Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Enter fundraiser name"
-            required
-          />
+            <label htmlFor="name">Fundraiser Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Enter fundraiser name"
+              required
+            />
 
-          <label htmlFor="description">Fundraiser Description</label>
-          <textarea
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            placeholder="Enter fundraiser description"
-            required
-          />
+            <label htmlFor="description">Fundraiser Description</label>
+            <textarea
+              id="description"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              placeholder="Enter fundraiser description"
+              required
+            />
 
-          <label htmlFor="imageUrl">Fundraiser Image URL</label>
-          <input
-            type="url"
-            id="imageUrl"
-            name="imageUrl"
-            value={formData.imageUrl}
-            onChange={handleChange}
-            placeholder="Enter image URL"
-            required
-          />
+            <label htmlFor="imageUrl">Fundraiser Image URL</label>
+            <input
+              type="url"
+              id="imageUrl"
+              name="imageUrl"
+              value={formData.imageUrl}
+              onChange={handleChange}
+              placeholder="Enter image URL"
+              required
+            />
 
-          <label htmlFor="qrCodeUrl">QR Code URL</label>
-          <input
-            type="url"
-            id="qrCodeUrl"
-            name="qrCodeUrl"
-            value={formData.qrCodeUrl}
-            onChange={handleChange}
-            placeholder="Enter QR code image URL"
-            required
-          />
+            <label htmlFor="qrCodeUrl">QR Code URL</label>
+            <input
+              type="url"
+              id="qrCodeUrl"
+              name="qrCodeUrl"
+              value={formData.qrCodeUrl}
+              onChange={handleChange}
+              placeholder="Enter QR code image URL"
+              required
+            />
 
-          <button type="submit">Submit</button>
-        </form>
+            <button type="submit">Submit</button>
+          </form>
         </div>
       )}
 
       <div className="search-container">
-      <span className="search-icon"
-      >🔍</span>
-      <input
-  type="text"
-  placeholder="Search fundraisers..."
-  value={query}
-  onChange={(e) => setQuery(e.target.value)}
-  style={{ width: "80%" }} // Adjust the width as needed
-/>
-
+        <span className="search-icon">🔍</span>
+        <input
+          type="text"
+          placeholder="Search fundraisers..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          style={{ width: "80%" }}
+        />
       </div>
 
       <div className="card-container">

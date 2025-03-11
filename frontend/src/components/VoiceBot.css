@@ -2,32 +2,32 @@
   font-size: 16px;
   font-weight: bold;
   transition: background-color 0.3s ease;
-  position: fixed; /* Fixed relative to the viewport */
-  bottom: 20px; /* Distance from the bottom of the screen */
-  left: 20px; /* Distance from the left side of the screen */
-  z-index: 1000; /* Ensure it appears above all other elements */
-  color: #fff; /* Ensure text is readable on the dark gradient */
-  background: linear-gradient(to right, #000000, #000000); /* Black gradient */
-  padding: 10px 20px; /* Add padding for better appearance */
-  border: none; /* Remove default borders */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Change cursor to pointer */
+  position: fixed; 
+  bottom: 20px; 
+  left: 20px; 
+  z-index: 1000;
+  color: #fff; 
+  background: linear-gradient(to right, #000000, #000000); 
+  padding: 10px 20px; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
 }
 
 .voicebot-toggle-button:hover {
   opacity: 0.8;
-  background: linear-gradient(to right, #434343, #000000); /* Reverse gradient on hover */
+  background: linear-gradient(to right, #434343, #000000); 
 }
 
   Copy.voicebot-container {
-    background: transparent; /* This removes the teal background */
+    background: transparent; 
     padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
-    position: relative; /* Add this to ensure proper layering */
-    z-index: 2; /* Add this to keep the button above the video */
+    position: relative; 
+    z-index: 2; 
   }
 
   

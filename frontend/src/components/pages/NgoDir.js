@@ -12,7 +12,7 @@ const NgoDir = () => {
   useEffect(() => {
     const fetchNGOs = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/ngos"); // Replace with your backend endpoint
+        const response = await axios.get("http://localhost:5000/api/ngos");
         if (response.data.success) {
           setNgos(response.data.data);
         } else {
@@ -38,11 +38,14 @@ const NgoDir = () => {
   return (
     <div className="ngodir-container">
       <div className="filter-container">
-        <span className="search-icon"
-        style={{
-          
-          marginTop: "52px",
-        }}>🔍</span>
+        <span
+          className="search-icon"
+          style={{
+            marginTop: "52px",
+          }}
+        >
+          🔍
+        </span>
         <input
           type="text"
           placeholder="Search by name..."
@@ -85,9 +88,17 @@ const NgoDir = () => {
                 className="ngo-image"
               />
               <h2>{ngo.name}</h2>
-              <p><b>Contact:</b> {ngo.contactNo}</p>
-              <p><b>Type: </b>{ngo.ngoType}</p>
-              <p><b>Address: </b>{ngo.address}</p>
+              <p>
+                <b>Contact:</b> {ngo.contactNo}
+              </p>
+              <p>
+                <b>Type: </b>
+                {ngo.ngoType}
+              </p>
+              <p>
+                <b>Address: </b>
+                {ngo.address}
+              </p>
               <a
                 href={ngo.websiteLink}
                 target="_blank"

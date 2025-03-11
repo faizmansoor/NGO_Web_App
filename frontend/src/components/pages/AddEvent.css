@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-image: url('https://files.123freevectors.com/wp-content/resized/111507-light-color-blurred-background-vector.jpg');
+    ;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -8,7 +8,7 @@ body {
     padding: 0;
     color: #000000;
     height: 100%;
-    overflow-y: scroll; /* Ensure scrollbar stays at the right of the page */
+    overflow-y: scroll;
 }
 
 /* Main Container */
@@ -21,7 +21,7 @@ body {
     gap: 20px;
     align-items: center;
     width: 100%;
-    box-sizing: border-box; /* Ensure padding doesn't cause overflow */
+    box-sizing: border-box; 
 }
 
 /* Form Styling */
@@ -37,7 +37,7 @@ form {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 2px solid black;  /* Added black border */
+    border: 2px solid black;  
 }
 
 h2 {
@@ -48,7 +48,7 @@ h2 {
     font-family: 'Roboto', sans-serif;
 }
 
-/* Input Fields */
+
 input, textarea {
     margin-top: 5%;
     height: 20%;
@@ -79,7 +79,7 @@ textarea {
 button {
     padding: 15px 30px;
     border: none;
-    background: linear-gradient(135deg, #000000, #000000); /* Black gradient */
+    background: linear-gradient(135deg, #000000, #000000); 
     color: white;
     font-size: 18px;
     font-weight: bold;
@@ -92,11 +92,11 @@ button {
 }
 
 button[type="submit"] {
-    margin-top: 10px; /* Adjust this value to your preference */
+    margin-top: 10px; 
 }
 
 button:hover {
-    background: linear-gradient(135deg, #000000, #333333); /* Inverted black gradient on hover */
+    background: linear-gradient(135deg, #000000, #333333); 
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
@@ -111,11 +111,11 @@ button:active {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Cards Grid Container */
+
 .cards-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Three cards per row */
-    gap: 20px; /* Spacing between cards */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
@@ -123,53 +123,53 @@ button:active {
 
 
 
-/* Card Styling */
+
 .cards-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Three cards per row */
-    gap: 30px; /* Increased spacing between cards */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px; 
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
-    justify-items: center; /* Center the cards */
+    justify-items: center; 
 }
 
-/* Card Styling */
+
 .card {
-    background: #ffffff; /* Keep the original background */
+    background: #ffffff; 
     border-radius: 12px;
-    border: 2px solid #000000; /* Added border for the card */
+    border: 2px solid #000000; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
     width: 100%;
-    box-sizing: border-box; /* Prevent overflow */
-    transition: all 0.3s ease; /* Smooth transition for hover effects */
-    overflow: hidden; /* Ensure content doesn't spill out */
+    box-sizing: border-box; 
+    transition: all 0.3s ease; 
+    overflow: hidden; 
 }
 
 
-/* Card image styling */
+
 .card img {
     width: 100%;
     height: auto;
     margin-top: 10px;
     border-radius: 8px;
-    transition: transform 0.3s ease-in-out; /* Smooth zoom on hover */
+    transition: transform 0.3s ease-in-out; 
 }
 
-/* Hover effect for cards */
+
 .card:hover {
-    transform: translateY(-10px); /* Lift the card on hover */
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2); /* Stronger shadow effect */
+    transform: translateY(-10px); 
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2); 
 }
 
-/* Hover effect for the card image */
+
 .card:hover img {
-    transform: scale(1.05); /* Slight zoom on image */
+    transform: scale(1.05); 
 }
 
-/* Optional: Enhance hover effects for card content (like title or text) */
+
 .card h3 {
     font-size: 1.6em;
     color: rgb(70, 70, 70);
@@ -178,7 +178,7 @@ button:active {
 }
 
 .card:hover h3 {
-    color: #000000; /* Change title color on hover */
+    color: #000000; 
 }
 
 .card p {
@@ -189,7 +189,7 @@ button:active {
 }
 
 .card:hover p {
-    color: #000000; /* Subtle text color change on hover */
+    color: #000000; 
 }
 @media (max-width: 1024px) {
     .form-container {
@@ -197,7 +197,7 @@ button:active {
     }
 
     .cards-container {
-        grid-template-columns: repeat(2, 1fr); /* Two cards per row */
+        grid-template-columns: repeat(2, 1fr); 
     }
 
     form {
@@ -219,7 +219,7 @@ button:active {
     }
 }
 
-/* For mobile devices (max-width: 768px) */
+/* For mobile devices  */
 @media (max-width: 768px) {
     .form-container {
         padding: 10px;

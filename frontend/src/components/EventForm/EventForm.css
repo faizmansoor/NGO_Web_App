@@ -1,6 +1,6 @@
-/* EventForm.css */
 
-/* Form Styling */
+
+
 .event-form {
   background: #077b4775;
   border-radius: 12px;
@@ -23,7 +23,7 @@ h2 {
   font-family: 'Roboto', sans-serif;
 }
 
-/* Input Fields */
+
 input, textarea {
   width: 100%;
   padding: 15px;
@@ -48,7 +48,7 @@ textarea {
   resize: vertical;
 }
 
-/* Button Styling */
+
 button {
   padding: 15px 30px;
   border: none;

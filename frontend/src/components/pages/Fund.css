@@ -1,18 +1,18 @@
-/* General Page Styling */
+
 body {
     font-family: 'Arial', sans-serif;
-    background-image: url('https://files.123freevectors.com/wp-content/resized/111507-light-color-blurred-background-vector.jpg');
+    
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     margin: 0;
     padding: 0;
     color: #000000;
-    min-height: 100vh;  /* Fixed semicolon */
+    min-height: 100vh;  
     overflow-y: scroll;
 }
 
-/* Main Container */
+
 .form-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -25,7 +25,7 @@ body {
     box-sizing: border-box;
 }
 
-/* Form Styling */
+
 form {
     background: rgba(7, 123, 71, 0.46);
     border-radius: 12px;
@@ -40,7 +40,7 @@ form {
     justify-content: center;
 }
 
-/* Heading Styling */
+
 h2 {
     text-align: center;
     color: #333;
@@ -49,7 +49,7 @@ h2 {
     font-family: 'Roboto', sans-serif;
 }
 
-/* Input Fields */
+
 input, textarea {
     width: 100%;
     padding: 15px;
@@ -74,7 +74,7 @@ textarea {
     resize: vertical;
 }
 
-/* Button Styling */
+
 button {
     padding: 15px 30px;
     border: none;
@@ -105,7 +105,7 @@ button:active {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Search Bar */
+
 .search-container {
     margin: 20px 0;
     margin-top: 5px;
@@ -127,7 +127,7 @@ button:active {
 }
 
 
-/* Card Styling */
+
 .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -164,11 +164,11 @@ button:active {
 }
 .form-btn {
     margin-top: 3%;
-    display: flex;               /* Enable flexbox */
-    justify-content: center;     /* Center horizontally */
-    align-items: center;         /* Center vertically */
-    width: 100%;                 /* Ensure it takes the full width */
-    height: 100%;             /* Optional: Adjust if you want to control height */
+    display: flex;               
+    justify-content: center;     
+    align-items: center;         
+    width: 100%;                 
+    height: 100%;             
   }
   
   .toggle-form-btn {
@@ -178,10 +178,10 @@ button:active {
     cursor: pointer;
   }
   .magic-form{
-    display: flex;               /* Enable flexbox */
-    justify-content: center;     /* Center horizontally */
-    align-items: center;         /* Center vertically */
-    width: 100%;                 /* Ensure it takes the full width */
+    display: flex;               
+    justify-content: center;     
+    align-items: center;         
+    width: 100%;                
     height: 100%; 
     margin-top: 2%;
 

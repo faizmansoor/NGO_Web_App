@@ -1,13 +1,13 @@
 .navbar {
     position:fixed;
     display: flex;
-    justify-content: flex-end; /* Align the items towards the end */
+    justify-content: flex-end; 
     align-items: center;
     background: rgb(0, 0, 0);
     flex-direction: column;
     padding: 10px 20px;
     border-radius: 0;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     position: sticky;
     top: 0;
     padding-top: 60px;
@@ -32,20 +32,20 @@
     color: rgb(0, 0, 0);
     padding: 5px 5px;
     border-radius: 5px;
-    margin-right: auto; /* Push the logo to the left */
+    margin-right: auto;
   }
   
   .nav-item {
     font-weight: bold;
     cursor: pointer;
-    padding: 0 10px; /* Add some padding for spacing */
-    margin-right: 240px; /* Space out the tabs a little bit */
+    padding: 0 10px; 
+    margin-right: 240px; 
     text-align: center;
     color: rgb(255, 255, 255);
   }
   
   .navbar .nav-item:first-child {
-    margin-right: 100; /* Remove the left margin for the first tab */
+    margin-right: 100; 
   }
 
   .navbar-title {
@@ -61,8 +61,8 @@
     
   list-style-type: none;
   display: flex;
-  justify-content: space-evenly; /* Space out the tabs evenly */
-  gap: 20px; /* Add consistent space between tabs */
+  justify-content: space-evenly; 
+  gap: 20px; 
   width: 100%;
   padding-bottom:13px ;
   font-family:Georgia, 'Times New Roman', Times, serif;
@@ -90,7 +90,7 @@
   }
   @media (max-width: 1024px) {
     .navbar {
-        flex-direction: column; /* Stack items vertically on smaller screens */
+        flex-direction: column;
         padding: 15px;
     }
 
@@ -99,42 +99,42 @@
     }
 
     .nav-item {
-        margin-right: 0; /* Remove extra space between items */
-        padding: 5px 0; /* Adjust padding for better alignment */
+        margin-right: 0; 
+        padding: 5px 0; 
     }
 
     .navbar-links {
-        flex-direction: column; /* Stack the links vertically */
+        flex-direction: column; 
         gap: 10px;
     }
 
     .navbar-links a {
-        font-size: 16px; /* Slightly smaller font size for better readability */
+        font-size: 16px; 
     }
 }
 
-/* For mobile devices (max-width: 768px) */
+
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column; /* Stack items vertically */
+        flex-direction: column; 
         padding: 20px;
     }
 
     .navbar-logo {
-        font-size: 18px; /* Further reduce logo size */
+        font-size: 18px; 
     }
 
     .nav-item {
-        padding: 5px 0; /* Adjust padding for better spacing */
+        padding: 5px 0; 
         margin-right: 0;
     }
 
     .navbar-links {
-        flex-direction: column; /* Stack links vertically */
+        flex-direction: column; 
         gap: 8px;
     }
 
     .navbar-links a {
-        font-size: 14px; /* Smaller font size for better mobile experience */
+        font-size: 14px;
     }
 }

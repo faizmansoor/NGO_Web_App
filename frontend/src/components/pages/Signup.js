@@ -26,7 +26,7 @@ const SignupPage = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/ngos/register",
+        `${process.env.REACT_APP_API_URL}/ngos/register`,
         formData,
         {
           headers: {

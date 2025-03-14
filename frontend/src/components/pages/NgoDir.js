@@ -12,7 +12,9 @@ const NgoDir = () => {
   useEffect(() => {
     const fetchNGOs = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/ngos");
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/ngos`
+        );
         if (response.data.success) {
           setNgos(response.data.data);
         } else {

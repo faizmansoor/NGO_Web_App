@@ -19,9 +19,12 @@ const Fund = () => {
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/check-auth", {
-          withCredentials: true,
-        });
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/check-auth`,
+          {
+            withCredentials: true,
+          }
+        );
 
         if (response.data.isAuthenticated) {
           setIsAuthenticated(true);
@@ -36,7 +39,7 @@ const Fund = () => {
     const fetchFundraisers = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/fundraisers"
+          `${process.env.REACT_APP_API_URL}/fundraisers`
         );
 
         if (response.data.success) {
@@ -63,7 +66,7 @@ const Fund = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/fundraisers",
+        `${process.env.REACT_APP_API_URL}/fundraisers`,
         formData,
         {
           headers: {

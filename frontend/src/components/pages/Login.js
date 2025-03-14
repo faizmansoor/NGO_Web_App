@@ -22,7 +22,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/ngos/login",
+        `${process.env.REACT_APP_API_URL}/ngos/login`,
         formData,
         {
           withCredentials: true,

@@ -25,9 +25,13 @@ const EventList = () => {
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/check-auth", {
-          withCredentials: true, 
-        });
+        console.log(process.env.REACT_APP_API_URL);
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/check-auth`,
+          {
+            withCredentials: true,
+          }
+        );
         setIsAuthenticated(response.data.isAuthenticated);
         setUserId(response.data.userId);
       } catch (err) {
@@ -39,7 +43,9 @@ const EventList = () => {
 
     const fetchEvents = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/events");
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/events`
+        );
         if (response.data.success) {
           setEvents(response.data.data);
         } else {
@@ -69,7 +75,7 @@ const EventList = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/events",
+        `${process.env.REACT_APP_API_URL}/events`,
         dataToSend,
         {
           headers: {
@@ -106,19 +112,19 @@ const EventList = () => {
   const handleDelete = async (eventId) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/events/${eventId}`,
+        `${process.env.REACT_APP_API_URL}/events/${eventId}`,
         {
-          withCredentials: true, 
+          withCredentials: true,
         }
       );
 
       if (response.data.success) {
-        setEvents(events.filter((event) => event._id !== eventId)); 
+        setEvents(events.filter((event) => event._id !== eventId));
         console.log("Event deleted successfully.");
-        window.location.href = "http://localhost:3000/addevent";
+        window.location.href = `${process.env.REACT_APP_URL}/addevent`;
       } else {
         console.log("deleting");
-        window.location.href = "http://localhost:3000/addevent";
+        window.location.href = `${process.env.REACT_APP_URL}/addevent`;
       }
     } catch (err) {
       console.log("No access");
@@ -138,7 +144,6 @@ const EventList = () => {
       })
     );
   }, [events, search, locationFilter]);
-  
 
   return (
     <div className="form-container">
@@ -238,7 +243,7 @@ const EventList = () => {
             onFocus={(e) => (e.target.style.border = "2px solid blue")}
             onBlur={(e) => (e.target.style.border = "1px solid #ccc")}
             style={{
-              marginTop: "48px", 
+              marginTop: "48px",
               height: "42px",
               border: "2px solid black",
             }}
@@ -273,16 +278,16 @@ const EventList = () => {
                 {event.ngoId === userId && (
                   <button
                     style={{
-                      all: "unset", 
-                      position: "absolute", 
-                      top: "10px", 
-                      right: "10px", 
+                      all: "unset",
+                      position: "absolute",
+                      top: "10px",
+                      right: "10px",
                       width: "30px",
-                      height: "30px", 
+                      height: "30px",
                       borderRadius: "50%",
                       backgroundColor: "darkgreen",
                       color: "white",
-                      fontSize: "18px", 
+                      fontSize: "18px",
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",

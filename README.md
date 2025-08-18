@@ -38,11 +38,10 @@ Through a **centralized**, **secure**, and **easy-to-use** platform, NGOVerse em
 - NGO authentication with **admin controls**
 - User authentication for volunteers and donors
 
-### 7. **Forum Discussions**
-- Interactive forums for NGOs, volunteers, and corporations to share insights and collaborate
 
-### 8. **AI Chatbot**
-- Instant answers to common queries about events, opportunities, and NGOs
+
+### 8. **AI Voicebot**
+- Instant navigation 
 
 ---
 

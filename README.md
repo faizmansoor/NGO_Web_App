@@ -23,13 +23,14 @@ Through a **centralized**, **secure**, and **easy-to-use** platform, NGOVerse em
 - Manage volunteers and events
 - Update activities and fundraising campaigns
 
-### 3. **Volunteer Sign-Up & Dashboard**
-- Explore verified NGO opportunities
-- Track contributions and participation history
+
+
 
 ### 4. **Event Management**
 - NGOs can create, update, and promote events
 - Volunteers can register and view upcoming events
+- Explore NGO opportunities
+- Track contributions and participation history
 
 ### 5. **Fundraising**
 - Secure and transparent fundraising campaigns for NGOs
